@@ -10,6 +10,7 @@ const createFile = (req, res) => {
     owner: req.user,
     fileName: req.body.fileName,
     isFolder: req.body.isFolder,
+    parentId: req.body.parentId,
   });
   newFile
     .save()
