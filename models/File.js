@@ -18,6 +18,9 @@ const FileSchema = new Schema(
       type: Schema.Types.ObjectId,
       default: null,
     },
+    key: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
