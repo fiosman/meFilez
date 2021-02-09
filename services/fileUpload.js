@@ -19,7 +19,7 @@ const upload = multer({
     key: function (req, file, cb) {
       cb(null, Date.now().toString());
     },
-    acl: "public-read",
+    acl: "private",
   }),
 });
 
