@@ -2,16 +2,17 @@ const File = require("../../models/File");
 const validateFileInput = require("../../validations/file");
 
 const createFile = (req, res) => {
-  console.log(req.file);
   const { isValid, errors } = validateFileInput(req.body);
 
   if (!isValid) return res.status(400).json(errors);
 
+  console.log(typeof req.file.key);
   const newFile = new File({
     owner: req.user,
     fileName: req.body.fileName,
     isFolder: req.body.isFolder,
     parentId: req.body.parentId,
+    fileKey: req.file.key,
   });
   newFile
     .save()
