@@ -2,7 +2,11 @@ const File = require("../../models/File");
 const validateFileInput = require("../../validations/file");
 
 const createFile = (req, res) => {
-  const { isValid, errors } = validateFileInput(req.body);
+  const requestObject = {
+    body: req.body,
+    file: req.file,
+  };
+  const { isValid, errors } = validateFileInput(requestObject);
 
   if (!isValid) return res.status(400).json(errors);
 

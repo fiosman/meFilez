@@ -3,10 +3,11 @@ const Validator = require("validator");
 
 module.exports = function validateFileInput(data) {
   let errors = {};
+  data.body.fileName = validString(data.body.fileName)
+    ? data.body.fileName
+    : "";
 
-  data.fileName = validString(data.fileName) ? data.fileName : "";
-
-  if (Validator.isEmpty(data.fileName)) {
+  if (Validator.isEmpty(data.body.fileName)) {
     errors.fileName = "File name is required";
   }
 
