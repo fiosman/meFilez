@@ -7,6 +7,8 @@ module.exports = function validateFileInput(data) {
     ? data.body.fileName
     : "";
 
+  //need to figure out how write validation for data.file
+
   if (Validator.isEmpty(data.body.fileName)) {
     errors.fileName = "File name is required";
   }

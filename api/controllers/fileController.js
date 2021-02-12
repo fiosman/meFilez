@@ -6,11 +6,12 @@ const createFile = (req, res) => {
     body: req.body,
     file: req.file,
   };
+
   const { isValid, errors } = validateFileInput(requestObject);
 
   if (!isValid) return res.status(400).json(errors);
 
-  console.log(typeof req.file.key);
+  // console.log(typeof req.file.key);
   const newFile = new File({
     owner: req.user,
     fileName: req.body.fileName,
