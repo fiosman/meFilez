@@ -11,7 +11,6 @@ const createFile = (req, res) => {
 
   if (!isValid) return res.status(400).json(errors);
 
-  // console.log(typeof req.file.key);
   const newFile = new File({
     owner: req.user,
     fileName: req.body.fileName,
