@@ -57,6 +57,7 @@ const loginUser = (req, res) => {
 
         if (isMatch) {
           const jwt = utils.createToken(user);
+          res.cookie("jwt", jwt.token, { httpOnly: true, maxAge: jwt.expires });
           return res.json({
             success: true,
             user: user._id,
