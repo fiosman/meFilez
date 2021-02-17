@@ -7,8 +7,6 @@ const createFile = (req, res) => {
     file: req.file,
   };
 
-  console.log(requestObject.file);
-
   const { isValid, errors } = validateFileInput(requestObject);
 
   if (!isValid) return res.status(400).json(errors);
@@ -26,6 +24,10 @@ const createFile = (req, res) => {
     .catch((err) => res.json(err));
 };
 
+const showFile = (req, res) => {
+  console.log(req.params);
+};
 module.exports = {
   createFile,
+  showFile,
 };
