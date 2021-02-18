@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const { createFile, showFile } = require("../controllers/fileController");
+const {
+  createFile,
+  showFile,
+  deleteFile,
+} = require("../controllers/fileController");
 const upload = require("../../services/fileUpload");
 
 router.post(
@@ -13,6 +17,12 @@ router.get(
   "/:fileId",
   passport.authenticate("jwt", { session: false }),
   showFile
+);
+
+router.delete(
+  "/:fileId",
+  passport.authenticate("jwt", { session: false }),
+  deleteFile
 );
 
 module.exports = router;

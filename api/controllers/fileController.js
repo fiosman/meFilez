@@ -25,9 +25,14 @@ const createFile = (req, res) => {
 };
 
 const showFile = (req, res) => {
-  console.log(req.params);
+  console.log(req.params); //show subfolders and files within a folder
+};
+
+const deleteFile = (req, res) => {
+  console.log(req.params); //delete a file or folder
 };
 module.exports = {
   createFile,
   showFile,
+  deleteFile,
 };
