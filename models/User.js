@@ -18,12 +18,6 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    files: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "File",
-      },
-    ],
   },
   { timestamps: true }
 );

@@ -16,7 +16,7 @@ const createFile = (req, res) => {
     fileName: req.body.fileName,
     isFolder: req.body.isFolder,
     parentId: req.body.parentId,
-    fileKey: req.file.key,
+    fileKey: req.file ? req.file.key : undefined,
   });
   newFile
     .save()
@@ -25,7 +25,19 @@ const createFile = (req, res) => {
 };
 
 const showFile = (req, res) => {
-  console.log(req.params); //show subfolders and files within a folder
+  File.find({_id: req.params.fileId}, (err, file) => {
+    if (err) {
+      res.send(err);
+    } else {
+        File.find({parentId: file[0]._id}, (err, files) => {
+          if (err) {
+            res.send(500).json(err);
+          } else {
+            res.send(files);
+          }
+        })
+    }
+  })
 };
 
 const deleteFile = (req, res) => {

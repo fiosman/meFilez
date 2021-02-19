@@ -6,6 +6,7 @@ const FileSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: "User",
+      index: true
     },
     fileName: {
       type: String,
@@ -16,7 +17,9 @@ const FileSchema = new Schema(
     },
     parentId: {
       type: Schema.Types.ObjectId,
-      default: null,
+      ref: 'File',
+      index: true,
+      default: null
     },
     fileKey: {
       type: String,

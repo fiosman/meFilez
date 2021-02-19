@@ -11,7 +11,7 @@ module.exports = function validateFileInput(data) {
     errors.fileName = "File name is required";
   }
 
-  if (data.file === undefined) {
+  if (data.file === undefined && !data.body.isFolder) {
     errors.file = "File input is required";
   }
 
