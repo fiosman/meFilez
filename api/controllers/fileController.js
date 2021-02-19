@@ -26,10 +26,13 @@ const createFile = (req, res) => {
 
 const showFile = (req, res) => {
   const parentId = req.params.fileId;
-  File.find({ parentId }) //returns a query, wont be executed until .exec or a callback is called
-    .exec()
-    .then((files) => res.json(files))
-    .catch((err) => res.json(err));
+  File.find({ parentId }, (err, files) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(files);
+    }
+  });
 };
 
 const deleteFile = (req, res) => {
