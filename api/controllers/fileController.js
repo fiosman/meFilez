@@ -25,19 +25,11 @@ const createFile = (req, res) => {
 };
 
 const showFile = (req, res) => {
-  File.findOne({ _id: req.params.fileId }, (err, file) => {
-    if (err) {
-      res.json(err);
-    } else {
-      File.find({ parentId: file._id }, (err, files) => {
-        if (err) {
-          res.send(500).json(err);
-        } else {
-          res.json(files);
-        }
-      });
-    }
-  });
+  const parentId = req.params.fileId;
+  File.find({ parentId }) //returns a query, wont be executed until .exec or a callback is called
+    .exec()
+    .then((files) => res.json(files))
+    .catch((err) => res.json(err));
 };
 
 const deleteFile = (req, res) => {
