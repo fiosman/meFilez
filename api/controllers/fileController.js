@@ -25,23 +25,23 @@ const createFile = (req, res) => {
 };
 
 const showFile = (req, res) => {
-  File.find({_id: req.params.fileId}, (err, file) => {
+  File.find({ _id: req.params.fileId }, (err, file) => {
     if (err) {
-      res.send(err);
+      res.json(err);
     } else {
-        File.find({parentId: file[0]._id}, (err, files) => {
-          if (err) {
-            res.send(500).json(err);
-          } else {
-            res.send(files);
-          }
-        })
+      File.find({ parentId: file[0]._id }, (err, files) => {
+        if (err) {
+          res.send(500).json(err);
+        } else {
+          res.json(files);
+        }
+      });
     }
-  })
+  });
 };
 
 const deleteFile = (req, res) => {
-  console.log(req.params); //delete a file or folder
+  console.log(req.params);
 };
 module.exports = {
   createFile,
