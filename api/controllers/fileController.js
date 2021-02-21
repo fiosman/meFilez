@@ -26,18 +26,15 @@ const createFile = (req, res) => {
 
 const showFile = (req, res) => {
   const parentId = req.params.fileId;
-  File.find({ parentId }, (err, files) => {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(files);
-    }
-  });
+  File.find({ parentId })
+    .then((files) => {
+      files.length < 1
+        ? res.status(400).json({ files: "No files were found." })
+        : res.json(files);
+    })
+    .catch((err) => res.json(err));
 };
 
-const deleteFile = (req, res) => {
-  //if file is a folder, delete it and its children, otherwise just delete the one file.
-};
 module.exports = {
   createFile,
   showFile,
