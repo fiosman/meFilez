@@ -36,7 +36,7 @@ const showFile = (req, res) => {
 };
 
 const deleteFile = (req, res) => {
-  console.log(req.params);
+  //if file is a folder, delete it and its children, otherwise just delete the one file.
 };
 module.exports = {
   createFile,
