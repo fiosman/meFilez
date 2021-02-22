@@ -35,6 +35,26 @@ const showFile = (req, res) => {
     .catch((err) => res.json(err));
 };
 
+const deleteFile = (req, res) => {
+  File.findById(req.params.fileId)
+    .then((file) => {
+      if (!file) {
+        return res.status(400).json({ file: "The file does not exist" });
+      }
+      if (file.isFolder) {
+        File.deleteMany({
+          $or: [{ _id: file._id }, { parentId: req.params.fileID }],
+        })
+          .then((data) => res.json(data))
+          .catch((err) => res.json(err));
+      } else {
+        File.deleteOne({ _id: file._id })
+          .then((data) => res.json(data))
+          .catch((err) => res.json(err));
+      }
+    })
+    .catch((err) => res.json(err));
+};
 module.exports = {
   createFile,
   showFile,
