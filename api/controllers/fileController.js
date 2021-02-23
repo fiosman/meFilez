@@ -43,7 +43,7 @@ const deleteFile = (req, res) => {
       }
       if (file.isFolder) {
         File.deleteMany({
-          $or: [{ _id: file._id }, { parentId: req.params.fileID }],
+          $or: [{ _id: file._id }, { parentId: req.params.fileId }],
         })
           .then((data) => res.json(data))
           .catch((err) => res.json(err));
