@@ -10,6 +10,16 @@ File storage service
 
 ### Backend
 
+- MongoDB
+- Mongoose
+- Express
+- Node
+
 ### Frontend
+
+- Redux
+- React
+- HTML
+- CSS
 
 ## Future Work
