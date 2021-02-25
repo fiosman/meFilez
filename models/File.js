@@ -24,9 +24,17 @@ const FileSchema = new Schema(
     fileKey: {
       type: String,
     },
+    ancestors: [
+      { type: Schema.Types.ObjectId, ref: "File", index: true, default: null },
+    ],
   },
   { timestamps: true }
 );
+
+FileSchema.post("validate", function (file, next) {
+  this.ancestors.push(file._id);
+  next();
+});
 
 const File = mongoose.model("file", FileSchema);
 module.exports = File;
