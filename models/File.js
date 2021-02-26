@@ -31,8 +31,14 @@ const FileSchema = new Schema(
   { timestamps: true }
 );
 
-FileSchema.post("validate", function (file, next) {
-  this.ancestors.push(file._id);
+FileSchema.post("save", function (file, next) {
+  File.findById(this.parentId)
+    .exec()
+    .then((file) => {
+      console.log(file.ancestors);
+      this.ancestors.push(...file.ancestors, file._id);
+    })
+    .catch((err) => console.log(err));
   next();
 });
 

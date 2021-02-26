@@ -1,7 +1,5 @@
 # meFilez
 
-File storage service
-
 ## Live Link
 
 ## Main Features
