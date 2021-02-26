@@ -1,8 +1,10 @@
 # meFilez
 
-File storage service
+File storage service with CRUD functionality.
 
 ## Live Link
+
+Coming soon
 
 ## Main Features
 
