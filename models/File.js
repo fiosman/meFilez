@@ -31,5 +31,16 @@ const FileSchema = new Schema(
   { timestamps: true }
 );
 
+FileSchema.pre("save", function (next) {
+  if (this.parentId != null) {
+    File.findById(this.parentId).then((file) => {
+      this.ancestors.push(...file.ancestors, file._id);
+      next();
+    });
+  } else {
+    next();
+  }
+});
+
 const File = mongoose.model("file", FileSchema);
 module.exports = File;
