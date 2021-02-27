@@ -24,6 +24,9 @@ const FileSchema = new Schema(
     fileKey: {
       type: String,
     },
+    ancestors: [
+      { type: Schema.Types.ObjectId, ref: "File", index: true, default: null },
+    ],
   },
   { timestamps: true }
 );
