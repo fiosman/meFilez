@@ -42,8 +42,12 @@ const deleteFile = (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => console.log(err));
 };
+
+const updateFile = (req, res) => {};
+
 module.exports = {
   createFile,
   showFile,
   deleteFile,
+  updateFile,
 };

@@ -5,6 +5,7 @@ const {
   createFile,
   showFile,
   deleteFile,
+  updateFile,
 } = require("../controllers/fileController");
 const upload = require("../../services/fileUpload");
 
@@ -23,6 +24,12 @@ router.delete(
   "/:fileId",
   passport.authenticate("jwt", { session: false }),
   deleteFile
+);
+
+router.patch(
+  "/:fileId",
+  passport.authenticate("jwt", { session: false }),
+  updateFile
 );
 
 module.exports = router;
