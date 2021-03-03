@@ -25,3 +25,6 @@ Coming soon
 - CSS
 
 ## Future Work
+
+- Ability to share files with non-registered users
+- Set up user groups for file access
