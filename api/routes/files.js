@@ -6,6 +6,7 @@ const {
   showFile,
   deleteFile,
   updateFile,
+  showAllFiles,
 } = require("../controllers/fileController");
 const upload = require("../../services/fileUpload");
 
@@ -32,4 +33,5 @@ router.patch(
   updateFile
 );
 
+router.get("/", passport.authenticate("jwt", { session: false }), showAllFiles);
 module.exports = router;

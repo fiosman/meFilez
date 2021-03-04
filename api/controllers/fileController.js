@@ -45,9 +45,12 @@ const deleteFile = (req, res) => {
 
 const updateFile = (req, res) => {};
 
+const showAllFiles = (req, res) => {};
+
 module.exports = {
   createFile,
   showFile,
   deleteFile,
   updateFile,
+  showAllFiles,
 };
