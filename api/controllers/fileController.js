@@ -1,5 +1,6 @@
 const File = require("../../models/File");
 const validateFileInput = require("../../validations/file");
+const jwt_decode = require('jwt-decode');
 
 const createFile = (req, res) => {
   const requestObject = {
@@ -43,9 +44,24 @@ const deleteFile = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-const updateFile = (req, res) => {};
+const updateFile = (req, res) => {
+  const fileId = req.params.fileId;
+  const newName = req.body.fileName;
 
-const showAllFiles = (req, res) => {};
+  const jwt = req.headers.authorization.replace('Bearer ', '');
+  const decoded = jwt_decode(jwt);
+   
+  const userId = decoded.sub;
+
+  File.updateOne({'$and':[{_id: fileId},{owner: userId}]}, {fileName: newName})
+    .then((data) => res.json(data))
+    .catch((err) => console.log(err));
+};
+
+const showAllFiles = (req, res) => {
+  // parsing the userId
+  // Find all the files using this userID and with parentID to be NULL
+};
 
 module.exports = {
   createFile,
