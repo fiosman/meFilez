@@ -15,6 +15,9 @@ router.post(
   [passport.authenticate("jwt", { session: false }), upload.single("file")],
   createFile
 );
+
+router.get("/", passport.authenticate("jwt", { session: false }), showAllFiles);
+
 router.get(
   "/:fileId",
   passport.authenticate("jwt", { session: false }),
@@ -33,5 +36,4 @@ router.patch(
   updateFile
 );
 
-router.get("/", passport.authenticate("jwt", { session: false }), showAllFiles);
 module.exports = router;
