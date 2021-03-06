@@ -36,8 +36,9 @@ const showFile = (req, res) => {
 };
 
 const deleteFile = (req, res) => {
+  const fileId = req.params.fileId;
   File.deleteMany({
-    $or: [{ ancestors: req.params.fileId }, { _id: req.params.fileId }],
+    $or: [{ ancestors: fileId }, { _id: fileId }],
   })
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
@@ -46,12 +47,8 @@ const deleteFile = (req, res) => {
 const updateFile = (req, res) => {
   const fileId = req.params.fileId;
   const newName = req.body.fileName;
-  const currentUser = req.user._id;
 
-  File.updateOne(
-    { $and: [{ _id: fileId }, { owner: currentUser }] },
-    { fileName: newName }
-  )
+  File.updateOne({ _id: fileId }, { fileName: newName })
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 };
