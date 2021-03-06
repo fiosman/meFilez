@@ -40,7 +40,7 @@ const deleteFile = (req, res) => {
     $or: [{ ancestors: req.params.fileId }, { _id: req.params.fileId }],
   })
     .then((data) => res.json(data))
-    .catch((err) => console.log(err));
+    .catch((err) => res.json(err));
 };
 
 const updateFile = (req, res) => {
