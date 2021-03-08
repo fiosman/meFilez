@@ -12,7 +12,7 @@ const createFile = (req, res) => {
   if (!isValid) return res.status(400).json(errors);
 
   const newFile = new File({
-    owner: req.user,
+    owner: req.user, 
     fileName: req.body.fileName,
     isFolder: req.body.isFolder,
     parentId: req.body.parentId,
@@ -54,8 +54,11 @@ const updateFile = (req, res) => {
 };
 
 const showAllFiles = (req, res) => {
-  // parsing the userId
-  // Find all the files using this userID and with parentID to be NULL
+  const currentUser = req.user._id;
+
+  File.find({owner: currentUser, parentId: null})
+    .then((files) => res.json(files))
+    .catch((err) => res.json(err));
 };
 
 module.exports = {
