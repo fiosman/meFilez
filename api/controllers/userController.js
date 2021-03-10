@@ -4,10 +4,11 @@ const validateLoginInput = require("../../validations/login");
 const utils = require("../../utils");
 
 const createUser = (req, res) => {
+  console.log(req.body);
   const { errors, isValid } = validateRegisterInput(req.body);
 
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(400).json({ errors });
   }
 
   User.findOne({ email: req.body.email }).then((user) => {
@@ -41,7 +42,7 @@ const loginUser = (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(400).json({ errors });
   }
 
   User.findOne({

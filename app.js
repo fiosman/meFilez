@@ -24,8 +24,6 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => res.send("Test"));
-
 app.use(bodyParser.json());
 app.use(passport.initialize());
 
