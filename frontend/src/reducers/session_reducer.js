@@ -1,9 +1,12 @@
-import { RECEIVE_CURRENT_USER } from "../actions/user_actions";
+import {
+  RECEIVE_CURRENT_USER,
+  LOGOUT_CURRENT_USER,
+} from "../actions/user_actions";
 
 const _defaultState = {
   id: null,
 };
-export const usersReducer = (state = _defaultState, action) => {
+export const sessionReducer = (state = _defaultState, action) => {
   Object.freeze(state);
 
   switch (action.type) {
@@ -14,9 +17,11 @@ export const usersReducer = (state = _defaultState, action) => {
           id: action.currentUser._id,
         }
       );
+    case LOGOUT_CURRENT_USER:
+      return _defaultState;
     default:
       return state;
   }
 };
 
-export default usersReducer;
+export default sessionReducer;
