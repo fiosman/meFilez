@@ -1,4 +1,4 @@
-import { signUpUser, logoutUser, loginUser } from "../util/user_util";
+import { signupUser, logoutUser, loginUser } from "../util/user_util";
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
@@ -23,16 +23,16 @@ export const removeSessionErrors = () => ({
 });
 
 export const signup = (userDetails) => (dispatch) =>
-  signUpUser(userDetails).then((user) =>
-    dispatch(receiveCurrentUser(user)).catch((err) => receiveSessionErrors(err))
-  );
+  signupUser(userDetails)
+    .then((user) => dispatch(receiveCurrentUser(user)))
+    .catch((err) => dispatch(receiveSessionErrors(err.response.data)));
 
 export const login = (userDetails) => (dispatch) =>
-  loginUser(userDetails).then((user) =>
-    dispatch(receiveCurrentUser(user)).catch((err) => receiveSessionErrors(err))
-  );
+  loginUser(userDetails)
+    .then((user) => dispatch(receiveCurrentUser(user)))
+    .catch((err) => dispatch(receiveSessionErrors(err.response.data)));
 
 export const logout = () => (dispatch) =>
-  logoutUser().then(() =>
-    dispatch(logoutCurrentUser()).catch((err) => receiveSessionErrors(err))
-  );
+  logoutUser()
+    .then(() => dispatch(logoutCurrentUser()))
+    .catch((err) => dispatch(receiveSessionErrors(err.response.data)));

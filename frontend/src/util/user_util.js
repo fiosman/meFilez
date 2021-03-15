@@ -1,5 +1,3 @@
-// sign up a user
-// log in a user
 import axios from "axios";
 
 export const signupUser = (userDetails) => {

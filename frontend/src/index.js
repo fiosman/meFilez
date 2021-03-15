@@ -4,8 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
+import { signup } from "./actions/user_actions";
+import { store } from "../src/store/store";
 
 window.axios = axios;
+window.store = store;
+window.signup = signup;
 
 ReactDOM.render(
   <React.StrictMode>
