@@ -8,7 +8,7 @@ export const usersReducer = (state = {}, action) => {
       return Object.assign(
         {},
         {
-          [action.currentUser.id]: action.currentUser,
+          [action.currentUser.userId]: action.currentUser,
         }
       );
     default:
