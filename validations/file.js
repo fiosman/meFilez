@@ -2,17 +2,17 @@ const validString = require("./valid-string");
 const Validator = require("validator");
 
 module.exports = function validateFileInput(data) {
-  let errors = {};
+  let errors = [];
   data.body.fileName = validString(data.body.fileName)
     ? data.body.fileName
     : "";
 
   if (Validator.isEmpty(data.body.fileName)) {
-    errors.fileName = "File name is required";
+    errors.push("File name is required");
   }
 
   if (data.file === undefined && !data.body.isFolder) {
-    errors.file = "File input is required";
+    errors.push("File input is required");
   }
 
   return {
