@@ -1,5 +1,5 @@
 import React from "react";
-import UserForm from "../user_form/user_form";
+import UserForm from "../user_form/signup_form";
 
 function Splash() {
   return (
