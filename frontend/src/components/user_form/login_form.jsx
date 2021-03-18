@@ -4,10 +4,8 @@ import Button from "react-bootstrap/Button";
 
 function LoginForm() {
   const [details, setDetails] = useState({
-    username: "",
     email: "",
     password: "",
-    password1: "",
   });
 
   function handleChange(e) {
@@ -31,16 +29,6 @@ function LoginForm() {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Username</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Username"
-          name="username"
-          onChange={handleChange}
-          value={details.username}
-        />
-      </Form.Group>
-      <Form.Group>
         <Form.Label>Please enter your password</Form.Label>
         <Form.Control
           type="password"
@@ -48,14 +36,6 @@ function LoginForm() {
           name="password"
           onChange={handleChange}
           value={details.password}
-        />
-        <Form.Label>Please enter your password again</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          name="password1"
-          onChange={handleChange}
-          valaue={details.password1}
         />
       </Form.Group>
       <Button onClick={handleSubmit} variant="custom" type="submit">
