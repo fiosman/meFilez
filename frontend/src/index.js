@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { signup } from "./actions/user_actions";
 import { store } from "../src/store/store";
+import { Provider } from "react-redux";
 
 window.axios = axios;
 window.store = store;
@@ -13,7 +14,9 @@ window.signup = signup;
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
