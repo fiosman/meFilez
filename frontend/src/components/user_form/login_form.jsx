@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { login, removeSessionErrors } from "../../actions/user_actions";
+import { useDispatch } from "react-redux";
 
 function LoginForm() {
   const [details, setDetails] = useState({
@@ -8,13 +10,18 @@ function LoginForm() {
     password: "",
   });
 
+  const dispatch = useDispatch();
+
   function handleChange(e) {
     setDetails((prevState) => {
       return { ...prevState, [e.target.name]: e.target.value };
     });
   }
 
-  function handleSubmit(e) {}
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(login(details));
+  }
 
   return (
     <Form>

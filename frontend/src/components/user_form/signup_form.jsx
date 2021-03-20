@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { signup, removeSessionErrors } from "../../actions/user_actions";
+import { useDispatch } from "react-redux";
 
 function SignUpForm() {
   const [details, setDetails] = useState({
     username: "",
     email: "",
     password: "",
-    password1: "",
+    password2: "",
   });
+
+  const dispatch = useDispatch();
 
   function handleChange(e) {
     setDetails((prevState) => {
@@ -16,7 +20,10 @@ function SignUpForm() {
     });
   }
 
-  function handleSubmit(e) {}
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(signup(details));
+  }
 
   return (
     <Form>
@@ -53,7 +60,7 @@ function SignUpForm() {
         <Form.Control
           type="password"
           placeholder="Password"
-          name="password1"
+          name="password2"
           onChange={handleChange}
           valaue={details.password1}
         />
