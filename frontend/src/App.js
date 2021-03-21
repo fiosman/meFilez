@@ -1,10 +1,15 @@
 import "./App.css";
 import Splash from "./components/splash/splash";
+import NavBar from "react-bootstrap/Navbar";
 
 function App() {
   return (
     <div>
-      {/* <p>This is a test</p> */}
+      <NavBar>
+        <NavBar.Brand>
+          <img src="/logo.png" className="logo" />
+        </NavBar.Brand>
+      </NavBar>
       <Splash />
     </div>
   );

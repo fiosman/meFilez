@@ -46,7 +46,7 @@ function LoginForm() {
         />
       </Form.Group>
       <Button onClick={handleSubmit} variant="custom" type="submit">
-        Sign up
+        Login
       </Button>
     </Form>
   );

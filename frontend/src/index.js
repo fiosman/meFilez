@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { signup } from "./actions/user_actions";
 import { store } from "../src/store/store";
 import { Provider } from "react-redux";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-window.axios = axios;
-window.store = store;
-window.signup = signup;
+// window.axios = axios;
+// window.store = store;
+// window.signup = signup;
 
 ReactDOM.render(
   <React.StrictMode>

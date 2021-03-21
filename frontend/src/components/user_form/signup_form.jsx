@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { signup, removeSessionErrors } from "../../actions/user_actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function SignUpForm() {
   const [details, setDetails] = useState({
@@ -13,6 +13,7 @@ function SignUpForm() {
   });
 
   const dispatch = useDispatch();
+  const { errors } = useSelector((state) => state);
 
   function handleChange(e) {
     setDetails((prevState) => {
@@ -22,12 +23,25 @@ function SignUpForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(signup(details));
+    dispatch(signup(details))
+      .then((user) => console.log(user))
+      .catch((err) => console.log(err));
+  }
+
+  function renderErrors() {
+    return (
+      <ul>
+        {errors.user.map((error, idx) => {
+          return <li key={idx}>{error}</li>;
+        })}
+      </ul>
+    );
   }
 
   return (
     <Form>
       <Form.Group>
+        {renderErrors()}
         <Form.Label>Email Address</Form.Label>
         <Form.Control
           type="email"
