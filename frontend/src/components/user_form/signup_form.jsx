@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { signup, removeSessionErrors } from "../../actions/user_actions";
 import { useDispatch, useSelector } from "react-redux";
-
+import Modal from "react-bootstrap/Modal";
 function SignUpForm() {
   const [details, setDetails] = useState({
     username: "",
@@ -11,6 +11,7 @@ function SignUpForm() {
     password: "",
     password2: "",
   });
+  const [show, setShow] = useState(false);
 
   const dispatch = useDispatch();
   const { errors } = useSelector((state) => state);
@@ -21,6 +22,14 @@ function SignUpForm() {
     });
   }
 
+  function handleClose() {
+    setShow(false);
+  }
+
+  function handleShow() {
+    setShow(true);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(signup(details))
@@ -29,19 +38,33 @@ function SignUpForm() {
   }
 
   function renderErrors() {
+    // return (
+    //   <ul>
+    //     {errors.user.map((error, idx) => {
+    //       return <li key={idx}>{error}</li>;
+    //     })}
+    //   </ul>
+    // );
+
     return (
-      <ul>
-        {errors.user.map((error, idx) => {
-          return <li key={idx}>{error}</li>;
-        })}
-      </ul>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        <Modal.Header>Hi</Modal.Header>
+        <Modal.Body>asdfasdf</Modal.Body>
+        <Modal.Footer>This is the footer</Modal.Footer>
+      </Modal>
     );
   }
 
   return (
     <Form>
+      {errors.user.length > 0 ? renderErrors() : ""}
       <Form.Group>
-        {renderErrors()}
         <Form.Label>Email Address</Form.Label>
         <Form.Control
           type="email"

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { login, removeSessionErrors } from "../../actions/user_actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function LoginForm() {
   const [details, setDetails] = useState({
@@ -11,6 +11,7 @@ function LoginForm() {
   });
 
   const dispatch = useDispatch();
+  const { errors } = useSelector((state) => state);
 
   function handleChange(e) {
     setDetails((prevState) => {
@@ -21,6 +22,16 @@ function LoginForm() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(login(details));
+  }
+
+  function renderErrors() {
+    return (
+      <ul>
+        {errors.user.map((error, idx) => {
+          return <li key={idx}>{error}</li>;
+        })}
+      </ul>
+    );
   }
 
   return (

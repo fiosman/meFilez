@@ -9,7 +9,7 @@ const createFile = (req, res) => {
 
   const { isValid, errors } = validateFileInput(requestObject);
 
-  if (!isValid) return res.status(400).json({ errors });
+  if (!isValid) return res.status(400).json(errors);
 
   const newFile = new File({
     owner: req.user,
