@@ -25,12 +25,18 @@ export const removeSessionErrors = () => ({
 export const signup = (userDetails) => (dispatch) =>
   signupUser(userDetails)
     .then((user) => dispatch(receiveCurrentUser(user)))
-    .catch((err) => dispatch(receiveSessionErrors(err.response.data)));
+    .catch((err) => {
+      dispatch(receiveSessionErrors(err.response.data));
+      throw err;
+    });
 
 export const login = (userDetails) => (dispatch) =>
   loginUser(userDetails)
     .then((user) => dispatch(receiveCurrentUser(user)))
-    .catch((err) => dispatch(receiveSessionErrors(err.response.data)));
+    .catch((err) => {
+      dispatch(receiveSessionErrors(err.response.data));
+      throw err;
+    });
 
 export const logout = () => (dispatch) =>
   logoutUser()

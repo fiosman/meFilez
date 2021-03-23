@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { login, removeSessionErrors } from "../../actions/user_actions";
+import { login } from "../../actions/user_actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function LoginForm() {

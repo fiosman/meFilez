@@ -7,7 +7,7 @@ function App() {
     <div>
       <NavBar>
         <NavBar.Brand>
-          <img src="/logo.png" className="logo" />
+          <img src="/logo.png" className="logo" alt="" />
         </NavBar.Brand>
       </NavBar>
       <Splash />
