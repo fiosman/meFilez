@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { login } from "../../actions/user_actions";
 import { useDispatch, useSelector } from "react-redux";
+import Modal from "react-bootstrap/Modal";
 
 function LoginForm() {
   const [details, setDetails] = useState({
@@ -10,8 +11,18 @@ function LoginForm() {
     password: "",
   });
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const dispatch = useDispatch();
   const { errors } = useSelector((state) => state);
+
+  function showModal() {
+    setIsOpen(true);
+  }
+
+  function hideModal() {
+    setIsOpen(false);
+  }
 
   function handleChange(e) {
     setDetails((prevState) => {
@@ -21,21 +32,45 @@ function LoginForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(login(details));
+    dispatch(login(details))
+      .then((user) => console.log("test"))
+      .catch((err) => showModal());
   }
 
   function renderErrors() {
     return (
-      <ul>
-        {errors.user.map((error, idx) => {
-          return <li key={idx}>{error}</li>;
-        })}
-      </ul>
+      <>
+        <Modal
+          show={isOpen}
+          onHide={hideModal}
+          backdrop="static"
+          keyboard={false}
+          centered
+          animation={false}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Uh oh! Something went wrong ;(</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <ul>
+              {errors.user.map((error, idx) => {
+                return <li key={idx}>{error}</li>;
+              })}
+            </ul>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={hideModal}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
     );
   }
 
   return (
     <Form>
+      {errors.user.length > 0 ? renderErrors() : ""}
       <Form.Group>
         <Form.Label>Email Address</Form.Label>
         <Form.Control

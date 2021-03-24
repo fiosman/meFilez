@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { signup } from "../../actions/user_actions";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
+
 function SignUpForm() {
   const [details, setDetails] = useState({
     username: "",
@@ -18,7 +19,6 @@ function SignUpForm() {
 
   function showModal() {
     setIsOpen(true);
-    console.log(isOpen);
   }
 
   function hideModal() {
