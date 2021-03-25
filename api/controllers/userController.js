@@ -4,7 +4,6 @@ const validateLoginInput = require("../../validations/login");
 const utils = require("../../utils");
 
 const createUser = (req, res) => {
-  console.log(req.body);
   const { errors, isValid } = validateRegisterInput(req.body);
 
   if (!isValid) {
