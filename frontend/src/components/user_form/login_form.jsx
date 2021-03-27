@@ -49,7 +49,7 @@ function LoginForm() {
           animation={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Registeration unsuccessful</Modal.Title>
+            <Modal.Title>Log in unsuccessful</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <ul>

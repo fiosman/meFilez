@@ -47,12 +47,14 @@ const loginUser = (req, res) => {
     email: req.body.email,
   }).then((user) => {
     if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "This user does not exist." });
+      errors.push("This user does not exist");
+      return res.status(404).json(errors);
     } else {
       user.comparePassword(req.body.password, function (err, isMatch) {
-        if (err) return res.json({ success: false, message: err });
+        if (err) {
+          errors.push(err);
+          return res.status(404).json(errors);
+        }
 
         if (isMatch) {
           const jwt = utils.createToken(user);
@@ -64,7 +66,8 @@ const loginUser = (req, res) => {
             expiresIn: jwt.expires,
           });
         } else {
-          return res.json({ message: "Invalid credentials" });
+          errors.push("Invalid credentials");
+          return res.status(404).json(errors);
         }
       });
     }
