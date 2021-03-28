@@ -14,7 +14,7 @@ export const sessionReducer = (state = _defaultState, action) => {
       return Object.assign(
         {},
         {
-          id: action.currentUser._id,
+          id: action.currentUser.userId,
         }
       );
     case LOGOUT_CURRENT_USER:
