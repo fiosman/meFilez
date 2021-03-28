@@ -1,6 +1,6 @@
 import { RECEIVE_FILES } from "../actions/file_actions";
 
-const fileReducer = (state = {}, action) => {
+const filesReducer = (state = {}, action) => {
   Object.freeze(state);
 
   switch (action.type) {
@@ -11,4 +11,4 @@ const fileReducer = (state = {}, action) => {
   }
 };
 
-export default fileReducer;
+export default filesReducer;
