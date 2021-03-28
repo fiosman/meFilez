@@ -4,8 +4,9 @@ import Button from "react-bootstrap/Button";
 import { login } from "../../actions/user_actions";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
+import { withRouter } from "react-router";
 
-function LoginForm() {
+function LoginForm(props) {
   const [details, setDetails] = useState({
     email: "",
     password: "",
@@ -33,7 +34,7 @@ function LoginForm() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(login(details))
-      .then((user) => console.log("test"))
+      .then((user) => props.history.push("/files"))
       .catch((err) => showModal());
   }
 
@@ -98,4 +99,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

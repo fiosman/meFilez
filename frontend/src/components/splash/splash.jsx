@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
-function Splash() {
+function Splash(props) {
   return (
     <div>
       <Container>

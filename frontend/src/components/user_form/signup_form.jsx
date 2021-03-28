@@ -3,9 +3,10 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { signup } from "../../actions/user_actions";
 import { useDispatch, useSelector } from "react-redux";
+import { withRouter } from "react-router";
 import Modal from "react-bootstrap/Modal";
 
-function SignUpForm() {
+function SignUpForm(props) {
   const [details, setDetails] = useState({
     username: "",
     email: "",
@@ -34,7 +35,7 @@ function SignUpForm() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(signup(details))
-      .then((user) => console.log("test"))
+      .then((user) => props.history.push("/files"))
       .catch((err) => showModal());
   }
 
@@ -117,4 +118,4 @@ function SignUpForm() {
   );
 }
 
-export default SignUpForm;
+export default withRouter(SignUpForm);

@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 // import { signup } from "./actions/user_actions";
 import { store } from "../src/store/store";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // window.axios = axios;
@@ -15,7 +16,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
