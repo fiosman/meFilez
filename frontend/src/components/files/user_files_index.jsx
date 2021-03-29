@@ -6,7 +6,6 @@ function UserFilesIndex() {
   const dispatch = useDispatch();
 
   const { files } = useSelector((state) => state.entities);
-  console.log(files);
 
   useEffect(() => {
     dispatch(fetchFiles());

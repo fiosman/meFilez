@@ -3,7 +3,7 @@ export const RECEIVE_FILES = "RECEIVE_FILES";
 
 export const receiveFiles = (files) => ({
   type: RECEIVE_FILES,
-  files,
+  files: files.data,
 });
 
 export const fetchFiles = () => (dispatch) =>

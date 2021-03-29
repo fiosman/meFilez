@@ -29,7 +29,11 @@ export const removeSessionErrors = () => ({
 
 export const signup = (userDetails) => (dispatch) =>
   signupUser(userDetails)
-    .then((user) => dispatch(receiveCurrentUser(user)))
+    .then((user) => {
+      setAuthToken();
+      dispatch(receiveCurrentUser(user));
+      dispatch(removeSessionErrors());
+    })
     .catch((err) => {
       dispatch(receiveSessionErrors(err.response.data));
       throw err;
@@ -40,6 +44,7 @@ export const login = (userDetails) => (dispatch) =>
     .then((user) => {
       setAuthToken();
       dispatch(receiveCurrentUser(user));
+      dispatch(removeSessionErrors());
     })
     .catch((err) => {
       dispatch(receiveSessionErrors(err.response.data));
