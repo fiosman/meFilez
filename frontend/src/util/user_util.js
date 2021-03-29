@@ -11,3 +11,8 @@ export const loginUser = (userDetails) => {
 export const logoutUser = () => {
   return axios.get("/api/users/logout");
 };
+
+export const setAuthToken = () => {
+  axios.defaults.withCredentials = true;
+  // axios.defaults.headers.common["Authorization"] =
+};

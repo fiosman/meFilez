@@ -6,8 +6,9 @@ export const receiveFiles = (files) => ({
   files,
 });
 
-export const fetchFiles = () => (dispatch) => {
+export const fetchFiles = () => (dispatch) =>
   getAllFiles()
     .then((files) => dispatch(receiveFiles(files)))
-    .catch((err) => console.log(err));
-};
+    .catch((err) => {
+      throw err;
+    });
