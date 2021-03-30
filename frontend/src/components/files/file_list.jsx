@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFiles } from "../../actions/file_actions";
 
-function UserFilesIndex() {
+function FileList() {
   const dispatch = useDispatch();
 
   const { files } = useSelector((state) => state.entities);
@@ -18,4 +18,4 @@ function UserFilesIndex() {
   );
 }
 
-export default UserFilesIndex;
+export default FileList;

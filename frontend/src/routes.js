@@ -1,6 +1,6 @@
 import React from "react";
 import Splash from "./components/splash/splash";
-import UserFilesIndex from "./components/files/user_files_index";
+import FileList from "./components/files/file_list";
 import { Route, Switch } from "react-router-dom";
 
 export const Routes = () => {
@@ -8,7 +8,7 @@ export const Routes = () => {
     <div>
       <Switch>
         <Route exact path="/" component={Splash} />
-        <Route exact path="/files" component={UserFilesIndex} />
+        <Route exact path="/files" component={FileList} />
       </Switch>
     </div>
   );
