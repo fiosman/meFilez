@@ -7,18 +7,17 @@ function FileList() {
   const dispatch = useDispatch();
 
   const { files } = useSelector((state) => state.entities);
-  console.log(files.length);
   useEffect(() => {
     dispatch(fetchFiles());
   }, [dispatch]);
 
   return (
     <div>
-      {/* <ul>
-        {files.map((file, index) => {
-          <FileListItem file={file} key={index} />;
+      <ul>
+        {Object.keys(files).map((fileId, index) => {
+          return <FileListItem file={files[fileId]} key={index} />;
         })}
-      </ul> */}
+      </ul>
       <p>test</p>
     </div>
   );
