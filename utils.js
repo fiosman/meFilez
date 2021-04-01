@@ -3,7 +3,7 @@ const key = require("./config/keys");
 
 const createToken = (user) => {
   const _id = user._id;
-  const expiresIn = 60 * 24 * 60;
+  const expiresIn = 259200 * 1000;
   const payload = {
     sub: _id,
     iat: Date.now(),
