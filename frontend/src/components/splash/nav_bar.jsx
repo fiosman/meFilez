@@ -22,7 +22,7 @@ function MainHeader(props) {
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
-        {session.id ? (
+        {session.signedIn ? (
           <Navbar.Text className="current-user-label">
             Signed in as: <a href="/">{entities.user[session.id].username}</a>
             <Button variant="custom" onClick={handleSignout}>
