@@ -50,3 +50,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+.bg-custom {
+  background-color: #383838;
+}
