@@ -13,10 +13,9 @@
   color: #fff;
 }
 
-.login-col {
-  margin-left: 150px;
+.col-lg-5 {
+  margin-left: 75px;
 }
-
 .container {
   margin: 50px auto;
 }
