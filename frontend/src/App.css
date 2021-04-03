@@ -59,3 +59,7 @@ ul {
   width: 130px;
   height: 100px;
 }
+
+.current-user-label > a {
+  padding-right: 15px;
+}
