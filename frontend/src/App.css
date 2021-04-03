@@ -52,5 +52,10 @@ ul {
 }
 
 .bg-custom {
-  background-color: #383838;
+  background-color: #303030;
+}
+
+.logo {
+  width: 130px;
+  height: 100px;
 }

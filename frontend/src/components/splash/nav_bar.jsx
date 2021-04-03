@@ -6,8 +6,8 @@ function MainHeader() {
   return (
     <Navbar bg="custom" variant="dark" className="nav-bar">
       <Navbar.Brand>
-        <Image src="/logo.png" width="140px" height="110px" /> Access your files
-        anywhere, anytime.
+        <Image src="/logo.png" className="logo" /> Access your files anywhere,
+        anytime.
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
