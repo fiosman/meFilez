@@ -54,4 +54,7 @@ export const login = (userDetails) => (dispatch) =>
 export const logout = () => (dispatch) =>
   logoutUser()
     .then(() => dispatch(logoutCurrentUser()))
-    .catch((err) => dispatch(receiveSessionErrors(err.response.data)));
+    .catch((err) => {
+      dispatch(receiveSessionErrors(err.response.data));
+      throw err;
+    });

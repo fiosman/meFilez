@@ -2,10 +2,18 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../actions/user_actions";
+import { withRouter } from "react-router";
 
-function MainHeader() {
+function MainHeader(props) {
+  const dispatch = useDispatch();
   const { entities, session } = useSelector((state) => state);
+
+  function handleSignout() {
+    dispatch(logout()).then(props.history.push("/"));
+  }
+
   return (
     <Navbar bg="custom" variant="dark" className="nav-bar">
       <Navbar.Brand>
@@ -16,8 +24,10 @@ function MainHeader() {
       <Navbar.Collapse className="justify-content-end">
         {session.id ? (
           <Navbar.Text className="current-user-label">
-            Signed in as: <a>{entities.user[session.id].username}</a>
-            <Button variant="custom">Sign out</Button>
+            Signed in as: <a href="/">{entities.user[session.id].username}</a>
+            <Button variant="custom" onClick={handleSignout}>
+              Sign out
+            </Button>
           </Navbar.Text>
         ) : (
           ""
@@ -27,4 +37,4 @@ function MainHeader() {
   );
 }
 
-export default MainHeader;
+export default withRouter(MainHeader);
