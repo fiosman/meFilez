@@ -11,7 +11,6 @@ function FileListItem(props) {
   //   dispatch(fetchFiles());
   // }, [dispatch]);
 
-  console.log(props.file.fileName);
   return <h1>filezz</h1>;
 }
 
