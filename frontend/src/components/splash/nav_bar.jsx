@@ -11,7 +11,7 @@ function MainHeader(props) {
   const { entities, session } = useSelector((state) => state);
 
   function handleSignout() {
-    dispatch(logout()).then(props.history.push("/"));
+    return dispatch(logout()).then(() => props.history.push("/"));
   }
 
   return (
