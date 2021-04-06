@@ -4,6 +4,8 @@ import { fetchFiles } from "../../actions/file_actions";
 
 function FileListItem(props) {
   // const dispatch = useDispatch();
+  console.log(props);
+  const { fileName } = props;
 
   // const { files } = useSelector((state) => state.entities);
 
