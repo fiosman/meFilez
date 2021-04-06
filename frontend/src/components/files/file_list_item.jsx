@@ -13,7 +13,7 @@ function FileListItem(props) {
   //   dispatch(fetchFiles());
   // }, [dispatch]);
 
-  return <h1>filezz</h1>;
+  return;
 }
 
 export default FileListItem;
