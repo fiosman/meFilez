@@ -18,12 +18,15 @@ function FileList() {
         <thead>
           <tr>
             <th>File Name</th>
-            <th>Date Created</th>
+            <th>Date Uploaded</th>
+            <th>Actions</th>
           </tr>
         </thead>
-        {Object.keys(files).map((fileId, index) => {
-          return <FileListItem file={files[fileId]} key={index} />;
-        })}
+        <tbody>
+          {Object.keys(files).map((fileId, index) => {
+            return <FileListItem file={files[fileId]} key={index} />;
+          })}
+        </tbody>
       </Table>
       <p>test</p>
     </div>
