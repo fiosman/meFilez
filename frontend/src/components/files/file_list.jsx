@@ -28,7 +28,6 @@ function FileList() {
           })}
         </tbody>
       </Table>
-      <p>test</p>
     </div>
   );
 }
