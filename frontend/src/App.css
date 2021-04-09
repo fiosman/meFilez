@@ -63,12 +63,22 @@ ul {
   padding-right: 15px;
 }
 
-.file-icon {
+.file-icon,
+.folder-icon {
   color: #303030;
   font-size: 20px;
 }
 
-.folder-icon {
-  color: #303030;
-  font-size: 20px;
+.folder-item:hover,
+.file-item:hover {
+  cursor: pointer;
+}
+
+.item-row:hover {
+  background-color: #f0f0f0;
+  cursor: default;
+}
+
+.delete-btn {
+  margin-right: 10px;
 }

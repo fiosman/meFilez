@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchFiles } from "../../actions/file_actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder, faFile } from "@fortawesome/free-solid-svg-icons";
+import Button from "react-bootstrap/Button";
 
 function FileListItem(props) {
   const {
@@ -16,21 +17,29 @@ function FileListItem(props) {
   } = props.file;
 
   return (
-    <tr>
+    <tr className="item-row">
       <td>
         {isFolder ? (
-          <span>
+          <span className="folder-item">
             <FontAwesomeIcon className="folder-icon" icon={faFolder} /> &nbsp;
             {fileName}
           </span>
         ) : (
-          <span>
+          <span className="file-item">
             <FontAwesomeIcon className="file-icon" icon={faFile} /> &nbsp;
             {fileName}
           </span>
         )}
       </td>
-      <td>{createdAt}</td>
+      <td>{new Date(createdAt).toLocaleString()}</td>
+      <td>
+        <Button className="delete-btn" variant="custom">
+          Delete
+        </Button>
+        <Button className="download-btn" variant="custom">
+          Download
+        </Button>
+      </td>
     </tr>
   );
 }
