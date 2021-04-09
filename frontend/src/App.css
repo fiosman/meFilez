@@ -62,3 +62,13 @@ ul {
 .current-user-label > a {
   padding-right: 15px;
 }
+
+.file-icon {
+  color: #303030;
+  font-size: 20px;
+}
+
+.folder-icon {
+  color: #303030;
+  font-size: 20px;
+}
