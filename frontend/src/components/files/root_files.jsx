@@ -1,10 +1,10 @@
 import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFiles } from "../../actions/file_actions";
-import FileListItem from "./file_list_item";
+import RootFileItem from "./root_file_item";
 import Table from "react-bootstrap/Table";
 
-function FileList() {
+function RootFiles() {
   const dispatch = useDispatch();
 
   const { files } = useSelector((state) => state.entities);
@@ -24,7 +24,7 @@ function FileList() {
         </thead>
         <tbody>
           {Object.keys(files).map((fileId, index) => {
-            return <FileListItem file={files[fileId]} key={index} />;
+            return <RootFileItem file={files[fileId]} key={index} />;
           })}
         </tbody>
       </Table>
@@ -32,4 +32,4 @@ function FileList() {
   );
 }
 
-export default FileList;
+export default RootFiles;

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder, faFile } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 
-function FileListItem(props) {
+function RootFileItem(props) {
   const {
     fileName,
     isFolder,
@@ -20,16 +20,20 @@ function FileListItem(props) {
 
   function handleDownload() {}
 
+  function viewFolder() {}
+
+  function viewFile() {}
+
   return (
     <tr className="item-row">
       <td>
         {isFolder ? (
-          <span className="folder-item">
+          <span className="folder-item" onClick={viewFolder}>
             <FontAwesomeIcon className="folder-icon" icon={faFolder} /> &nbsp;
             {fileName}
           </span>
         ) : (
-          <span className="file-item">
+          <span className="file-item" onClick={viewFile}>
             <FontAwesomeIcon className="file-icon" icon={faFile} /> &nbsp;
             {fileName}
           </span>
@@ -40,16 +44,20 @@ function FileListItem(props) {
         <Button className="delete-btn" variant="custom" onClick={handleDelete}>
           Delete
         </Button>
-        <Button
-          className="download-btn"
-          variant="custom"
-          onClick={handleDownload}
-        >
-          Download
-        </Button>
+        {isFolder ? (
+          ""
+        ) : (
+          <Button
+            className="download-btn"
+            variant="custom"
+            onClick={handleDownload}
+          >
+            Download
+          </Button>
+        )}
       </td>
     </tr>
   );
 }
 
-export default FileListItem;
+export default RootFileItem;
