@@ -16,6 +16,10 @@ function FileListItem(props) {
     ancestors,
   } = props.file;
 
+  function handleDelete() {}
+
+  function handleDownload() {}
+
   return (
     <tr className="item-row">
       <td>
@@ -33,10 +37,14 @@ function FileListItem(props) {
       </td>
       <td>{new Date(createdAt).toLocaleString()}</td>
       <td>
-        <Button className="delete-btn" variant="custom">
+        <Button className="delete-btn" variant="custom" onClick={handleDelete}>
           Delete
         </Button>
-        <Button className="download-btn" variant="custom">
+        <Button
+          className="download-btn"
+          variant="custom"
+          onClick={handleDownload}
+        >
           Download
         </Button>
       </td>
