@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchFiles, fetchFolder } from "../../actions/file_actions";
 import RootFileItem from "./root_file_item";
 import Table from "react-bootstrap/Table";
+import CreateUpload from "../create_upload/create_upload";
+import Search from "../search/search";
 
 function RootFiles(props) {
   const dispatch = useDispatch();
@@ -27,6 +29,8 @@ function RootFiles(props) {
 
   return (
     <div>
+      <Search />
+      <CreateUpload />
       <Table>
         <thead>
           <tr>

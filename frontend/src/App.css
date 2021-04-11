@@ -82,3 +82,20 @@ ul {
 .delete-btn {
   margin-right: 10px;
 }
+
+.add-folder,
+.upload-file {
+  color: #303030;
+  font-size: 30px;
+  margin: 0px 20px 0 20px;
+}
+
+.folder-upload-add {
+  display: inline-block;
+}
+
+.search-bar {
+  display: inline-block;
+  margin: 20px 0px 20px 10px;
+  width: 20%;
+}
