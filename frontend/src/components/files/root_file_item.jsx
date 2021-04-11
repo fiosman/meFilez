@@ -4,6 +4,7 @@ import { fetchFiles } from "../../actions/file_actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder, faFile } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
+import { withRouter } from "react-router";
 
 function RootFileItem(props) {
   const {
@@ -14,13 +15,16 @@ function RootFileItem(props) {
     parentId,
     fileKey,
     ancestors,
+    _id,
   } = props.file;
 
   function handleDelete() {}
 
   function handleDownload() {}
 
-  function viewFolder() {}
+  function viewFolder() {
+    props.history.push(`/files/${_id}`);
+  }
 
   function viewFile() {}
 
@@ -60,4 +64,4 @@ function RootFileItem(props) {
   );
 }
 
-export default RootFileItem;
+export default withRouter(RootFileItem);

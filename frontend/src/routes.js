@@ -11,7 +11,7 @@ export const Routes = () => {
       <Switch>
         <AuthRoute exact path="/" component={Splash} />
         <ProtectedRoute exact path="/files" component={RootFiles} />
-        <ProtectedRoute exact path="/files/:fileId" component={FolderItems} />
+        <ProtectedRoute exact path="/files/:fileId" component={RootFiles} />
       </Switch>
     </div>
   );

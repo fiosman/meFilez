@@ -28,9 +28,7 @@ const showFile = (req, res) => {
   const parentId = req.params.fileId;
   File.find({ parentId })
     .then((files) => {
-      files.length < 1
-        ? res.status(400).json({ files: "No files were found." })
-        : res.json(files);
+      return res.json(files);
     })
     .catch((err) => res.json(err));
 };

@@ -1,16 +1,29 @@
 import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchFiles } from "../../actions/file_actions";
+import { fetchFiles, fetchFolder } from "../../actions/file_actions";
 import RootFileItem from "./root_file_item";
 import Table from "react-bootstrap/Table";
 
-function RootFiles() {
+function RootFiles(props) {
   const dispatch = useDispatch();
 
   const { files } = useSelector((state) => state.entities);
+
   useEffect(() => {
-    dispatch(fetchFiles());
-  }, [dispatch]);
+    props.match.params.fileId === undefined
+      ? dispatch(fetchFiles())
+      : dispatch(fetchFolder(props.match.params.fileId));
+  }, [dispatch, props.match.params.fileId]);
+
+  function renderFiles() {
+    if (Object.keys(files).length > 0) {
+      return Object.keys(files).map((fileId, index) => (
+        <RootFileItem file={files[fileId]} key={index} />
+      ));
+    } else {
+      return <h2>Nothing to show here </h2>;
+    }
+  }
 
   return (
     <div>
@@ -22,11 +35,7 @@ function RootFiles() {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
-          {Object.keys(files).map((fileId, index) => {
-            return <RootFileItem file={files[fileId]} key={index} />;
-          })}
-        </tbody>
+        <tbody>{renderFiles()}</tbody>
       </Table>
     </div>
   );
