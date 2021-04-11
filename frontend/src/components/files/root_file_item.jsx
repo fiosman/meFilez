@@ -2,7 +2,12 @@ import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFiles } from "../../actions/file_actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolder, faFile } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFolder,
+  faFile,
+  faTrash,
+  faFileDownload,
+} from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import { withRouter } from "react-router";
 
@@ -45,19 +50,19 @@ function RootFileItem(props) {
       </td>
       <td>{new Date(createdAt).toLocaleString()}</td>
       <td>
-        <Button className="delete-btn" variant="custom" onClick={handleDelete}>
-          Delete
-        </Button>
+        <FontAwesomeIcon
+          className="delete-icon"
+          icon={faTrash}
+          onClick={handleDelete}
+        />
         {isFolder ? (
           ""
         ) : (
-          <Button
-            className="download-btn"
-            variant="custom"
+          <FontAwesomeIcon
+            className="download-icon"
+            icon={faFileDownload}
             onClick={handleDownload}
-          >
-            Download
-          </Button>
+          />
         )}
       </td>
     </tr>
