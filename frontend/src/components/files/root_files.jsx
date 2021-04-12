@@ -4,7 +4,7 @@ import { fetchFiles, fetchFolder } from "../../actions/file_actions";
 import RootFileItem from "./root_file_item";
 import Table from "react-bootstrap/Table";
 import CreateUpload from "../create_upload/create_upload";
-import Search from "../search/search";
+import Search from "../search_files/search";
 
 function RootFiles(props) {
   const dispatch = useDispatch();
