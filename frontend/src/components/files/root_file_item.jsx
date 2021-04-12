@@ -1,6 +1,4 @@
-import { React, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchFiles } from "../../actions/file_actions";
+import { React } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFolder,
@@ -8,20 +6,10 @@ import {
   faTrash,
   faFileDownload,
 } from "@fortawesome/free-solid-svg-icons";
-import Button from "react-bootstrap/Button";
 import { withRouter } from "react-router";
 
 function RootFileItem(props) {
-  const {
-    fileName,
-    isFolder,
-    createdAt,
-    updatedAt,
-    parentId,
-    fileKey,
-    ancestors,
-    _id,
-  } = props.file;
+  const { fileName, isFolder, createdAt, _id } = props.file;
 
   function handleDelete() {}
 

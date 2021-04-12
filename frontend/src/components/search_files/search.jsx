@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import FormControl from "react-bootstrap/FormControl";
-import { useDispatch } from "react-redux";
-import { receiveSearchedFiles } from "../../actions/file_actions";
+import { useDispatch, useSelector } from "react-redux";
+import { receiveSearchTerm } from "../../actions/file_actions";
 
 function Search() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(
+    useSelector((state) => state.filters.search)
+  );
 
   const dispatch = useDispatch();
 
@@ -13,7 +15,7 @@ function Search() {
   }
 
   useEffect(() => {
-    dispatch(receiveSearchedFiles(searchTerm));
+    dispatch(receiveSearchTerm(searchTerm));
   }, [searchTerm, dispatch]);
 
   return (

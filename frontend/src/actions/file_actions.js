@@ -1,6 +1,6 @@
 import { getAllFiles, getFolder } from "../util/file_util";
 export const RECEIVE_FILES = "RECEIVE_FILES";
-export const RECEIVE_SEARCHED_FILES = "RECEIVE_SEARCHED_FILES";
+export const RECEIVE_SEARCH_TERM = "RECEIVE_SEARCH_TERM";
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
 
 export const receiveFiles = (files) => ({
@@ -8,8 +8,8 @@ export const receiveFiles = (files) => ({
   files: files.data,
 });
 
-export const receiveSearchedFiles = (searchTerm) => ({
-  type: RECEIVE_SEARCHED_FILES,
+export const receiveSearchTerm = (searchTerm) => ({
+  type: RECEIVE_SEARCH_TERM,
   searchTerm,
 });
 

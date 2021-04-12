@@ -3,13 +3,28 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchFiles, fetchFolder } from "../../actions/file_actions";
 import RootFileItem from "./root_file_item";
 import Table from "react-bootstrap/Table";
-import CreateUpload from "../create_upload/create_upload";
+import CreateUpload from "../upload_files/create_upload";
 import Search from "../search_files/search";
+import NothingToShow from "./nothing_to_show";
 
 function RootFiles(props) {
   const dispatch = useDispatch();
 
   const { files } = useSelector((state) => state.entities);
+
+  const filteredFiles = useSelector((state) => {
+    let allFiles = [];
+    for (const file in files) {
+      if (
+        files[file].fileName
+          .toLowerCase()
+          .includes(state.filters.search.toLowerCase())
+      ) {
+        allFiles.push(file);
+      }
+    }
+    return allFiles;
+  });
 
   useEffect(() => {
     props.match.params.fileId === undefined
@@ -18,12 +33,10 @@ function RootFiles(props) {
   }, [dispatch, props.match.params.fileId]);
 
   function renderFiles() {
-    if (Object.keys(files).length > 0) {
-      return Object.keys(files).map((fileId, index) => (
+    if (filteredFiles.length > 0) {
+      return filteredFiles.map((fileId, index) => (
         <RootFileItem file={files[fileId]} key={index} />
       ));
-    } else {
-      return <h2>Nothing to show here </h2>;
     }
   }
 
@@ -31,16 +44,20 @@ function RootFiles(props) {
     <div>
       <Search />
       <CreateUpload />
-      <Table>
-        <thead>
-          <tr>
-            <th>File Name</th>
-            <th>Date Uploaded</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>{renderFiles()}</tbody>
-      </Table>
+      {filteredFiles.length > 0 ? (
+        <Table>
+          <thead>
+            <tr>
+              <th>File Name</th>
+              <th>Date Uploaded</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>{renderFiles()}</tbody>
+        </Table>
+      ) : (
+        <NothingToShow />
+      )}
     </div>
   );
 }

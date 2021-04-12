@@ -112,3 +112,11 @@ ul {
   margin: 20px 0px 20px 10px;
   width: 20%;
 }
+
+.nothing-to-show {
+  margin-left: 10px;
+}
+
+.nothing-to-show > h3 {
+  color: #696969;
+}
