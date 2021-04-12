@@ -90,7 +90,8 @@ ul {
 }
 
 .add-folder,
-.upload-file {
+.upload-file,
+.previous-page {
   color: #800080;
   font-size: 30px;
   margin: 0px 15px 0 20px;
@@ -99,7 +100,8 @@ ul {
 .add-folder:hover,
 .upload-file:hover,
 .delete-icon:hover,
-.download-icon:hover {
+.download-icon:hover,
+.previous-page {
   cursor: pointer;
 }
 
