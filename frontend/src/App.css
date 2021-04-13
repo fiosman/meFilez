@@ -109,7 +109,7 @@ ul {
   display: inline-block;
 }
 
-.search-bar {
+.search-container {
   display: inline-block;
   margin: 20px 0px 20px 10px;
   width: 20%;
@@ -121,4 +121,9 @@ ul {
 
 .nothing-to-show > h3 {
   color: #696969;
+}
+
+.search-box,
+.clear-filters {
+  display: inline-block !important;
 }
