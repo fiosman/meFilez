@@ -106,13 +106,20 @@ ul {
 }
 
 .folder-upload-add {
-  display: inline-block;
+  display: flex;
 }
 
+.add-folder {
+  flex: -1;
+}
+
+.upload-file {
+  flex: -1;
+}
 .search-container {
-  display: inline-block;
+  display: flex;
   margin: 20px 0px 20px 10px;
-  width: 20%;
+  width: fit-content;
 }
 
 .nothing-to-show {
@@ -123,7 +130,11 @@ ul {
   color: #696969;
 }
 
+.search-box {
+  margin-right: 10px;
+}
+
 .search-box,
-.clear-filters {
-  display: inline-block !important;
+.clearfilters {
+  flex: 1;
 }

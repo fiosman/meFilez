@@ -43,18 +43,20 @@ function RootFiles(props) {
   return (
     <div>
       <Search />
-      <CreateUpload />
       {filteredFiles.length > 0 ? (
-        <Table>
-          <thead>
-            <tr>
-              <th>File Name</th>
-              <th>Date Uploaded</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>{renderFiles()}</tbody>
-        </Table>
+        <div>
+          <CreateUpload />
+          <Table>
+            <thead>
+              <tr>
+                <th>File Name</th>
+                <th>Date Uploaded</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>{renderFiles()}</tbody>
+          </Table>
+        </div>
       ) : (
         <NothingToShow />
       )}
