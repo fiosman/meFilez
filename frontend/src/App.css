@@ -109,13 +109,11 @@ ul {
   display: flex;
 }
 
-.add-folder {
-  flex: -1;
-}
-
+.add-folder,
 .upload-file {
   flex: -1;
 }
+
 .search-container {
   display: flex;
   margin: 20px 0px 20px 10px;
@@ -123,7 +121,7 @@ ul {
 }
 
 .nothing-to-show {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .nothing-to-show > h3 {

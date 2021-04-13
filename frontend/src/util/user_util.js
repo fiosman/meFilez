@@ -14,5 +14,4 @@ export const logoutUser = () => {
 
 export const setAuthToken = () => {
   axios.defaults.withCredentials = true;
-  // axios.defaults.headers.common["Authorization"] =
 };
