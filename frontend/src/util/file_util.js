@@ -7,3 +7,7 @@ export const getAllFiles = () => {
 export const getFolder = (fileId) => {
   return axios.get(`/api/files/${fileId}`);
 };
+
+export const deleteFile = (fileId) => {
+  return axios.delete(`/aapi/files/${fileId}`);
+};
