@@ -1,4 +1,4 @@
-import { getAllFiles, getFolder } from "../util/file_util";
+import { getAllFiles, getFolder, deleteFile } from "../util/file_util";
 export const RECEIVE_FILES = "RECEIVE_FILES";
 export const RECEIVE_SEARCH_TERM = "RECEIVE_SEARCH_TERM";
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
@@ -33,6 +33,13 @@ export const fetchFiles = () => (dispatch) =>
 export const fetchFolder = (folderId) => (dispatch) =>
   getFolder(folderId)
     .then((files) => dispatch(receiveFiles(files)))
+    .catch((err) => {
+      throw err;
+    });
+
+export const wipeFile = (fileId) => (dispatch) =>
+  deleteFile(fileId)
+    .then((file) => dispatch(removeFile(file)))
     .catch((err) => {
       throw err;
     });
