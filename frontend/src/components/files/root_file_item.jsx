@@ -7,11 +7,17 @@ import {
   faFileDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router";
+import { useDispatch } from "react-redux";
+import { wipeFile } from "../../actions/file_actions";
 
 function RootFileItem(props) {
   const { fileName, isFolder, createdAt, _id } = props.file;
 
-  function handleDelete() {}
+  const dispatch = useDispatch();
+
+  function handleDelete() {
+    return dispatch(wipeFile(_id));
+  }
 
   function handleDownload() {}
 

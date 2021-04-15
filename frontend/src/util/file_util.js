@@ -9,5 +9,5 @@ export const getFolder = (fileId) => {
 };
 
 export const deleteFile = (fileId) => {
-  return axios.delete(`/aapi/files/${fileId}`);
+  return axios.delete(`/api/files/${fileId}`);
 };

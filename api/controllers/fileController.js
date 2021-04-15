@@ -38,7 +38,7 @@ const deleteFile = (req, res) => {
   File.deleteMany({
     $or: [{ ancestors: fileId }, { _id: fileId }],
   })
-    .then((data) => res.json(data))
+    .then(() => res.json(fileId))
     .catch((err) => res.json(err));
 };
 

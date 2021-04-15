@@ -20,7 +20,7 @@ export const clearFilters = () => ({
 
 export const removeFile = (file) => ({
   type: REMOVE_FILE,
-  fileId: file.id,
+  fileId: file.data,
 });
 
 export const fetchFiles = () => (dispatch) =>
@@ -39,7 +39,9 @@ export const fetchFolder = (folderId) => (dispatch) =>
 
 export const wipeFile = (fileId) => (dispatch) =>
   deleteFile(fileId)
-    .then((file) => dispatch(removeFile(file)))
+    .then((file) => {
+      dispatch(removeFile(file));
+    })
     .catch((err) => {
       throw err;
     });
