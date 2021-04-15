@@ -14,7 +14,14 @@ function CreateUpload(props) {
   return (
     <div className="folder-upload-add">
       {props.match.url === "/files" ? (
-        ""
+        <div>
+          <span className="add-folder">
+            <FontAwesomeIcon icon={faFolderPlus} />
+          </span>
+          <span className="upload-file">
+            <FontAwesomeIcon icon={faFileUpload} />
+          </span>
+        </div>
       ) : (
         <span className="previous-page">
           <FontAwesomeIcon icon={faArrowLeft} onClick={goToPreviousPage} />

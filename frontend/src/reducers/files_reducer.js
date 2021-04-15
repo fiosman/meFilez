@@ -9,7 +9,12 @@ const filesReducer = (state = {}, action) => {
       return Object.assign({}, action.files);
     case REMOVE_FILE:
       let currentState = Object.assign({}, state);
-      delete currentState[action.fileId];
+
+      for (const file in currentState) {
+        if (currentState[file]._id === action.fileId) {
+          delete currentState[file];
+        }
+      }
       return currentState;
     case LOGOUT_CURRENT_USER:
       return {};

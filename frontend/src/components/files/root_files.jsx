@@ -43,9 +43,9 @@ function RootFiles(props) {
   return (
     <div>
       <Search />
+      <CreateUpload />
       {filteredFiles.length > 0 ? (
         <div>
-          <CreateUpload />
           <Table>
             <thead>
               <tr>
