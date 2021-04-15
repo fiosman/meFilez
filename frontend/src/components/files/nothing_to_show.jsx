@@ -12,9 +12,13 @@ function NothingToShow(props) {
       ) : (
         <div className="nothing-to-show">
           <h3>Nothing to show here...</h3>
-          <Button variant="custom" onClick={() => props.history.goBack()}>
-            Go back
-          </Button>
+          {props.match.url === "/files" ? (
+            ""
+          ) : (
+            <Button variant="custom" onClick={() => props.history.goBack()}>
+              Go back
+            </Button>
+          )}
         </div>
       )}
     </div>

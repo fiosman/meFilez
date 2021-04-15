@@ -23,16 +23,18 @@ function CreateUpload(props) {
           </span>
         </div>
       ) : (
-        <span className="previous-page">
-          <FontAwesomeIcon icon={faArrowLeft} onClick={goToPreviousPage} />
-        </span>
+        <div>
+          <span className="previous-page">
+            <FontAwesomeIcon icon={faArrowLeft} onClick={goToPreviousPage} />
+          </span>
+          <span className="add-folder">
+            <FontAwesomeIcon icon={faFolderPlus} />
+          </span>
+          <span className="upload-file">
+            <FontAwesomeIcon icon={faFileUpload} />
+          </span>
+        </div>
       )}
-      <span className="add-folder">
-        <FontAwesomeIcon icon={faFolderPlus} />
-      </span>
-      <span className="upload-file">
-        <FontAwesomeIcon icon={faFileUpload} />
-      </span>
     </div>
   );
 }
