@@ -1,14 +1,25 @@
-import { getAllFiles, getFolder, deleteFile } from "../util/file_util";
+import {
+  getAllFiles,
+  getFolder,
+  deleteFile,
+  createFile,
+} from "../util/file_util";
 export const RECEIVE_FILES = "RECEIVE_FILES";
 export const RECEIVE_SEARCH_TERM = "RECEIVE_SEARCH_TERM";
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
 export const REMOVE_FILE = "REMOVE_FILE";
 export const RECEIVE_FILE_ERRORS = "RECEIVE_FILE_ERRORS";
 export const REMOVE_FILE_ERRORS = "REMOVE_FILE_ERRORS";
+export const RECEIVE_FILE = "RECEIVE_FILE";
 
 export const receiveFiles = (files) => ({
   type: RECEIVE_FILES,
   files: files.data,
+});
+
+export const receiveFile = (file) => ({
+  type: RECEIVE_FILE,
+  file: file.data,
 });
 
 export const receiveSearchTerm = (searchTerm) => ({
@@ -33,6 +44,9 @@ export const receiveFileErrors = (errors) => ({
 export const removeFileErrors = () => ({
   type: REMOVE_FILE_ERRORS,
 });
+
+// export const newFile = () => (dispatch) =>
+// createFile().then((file))
 
 export const fetchFiles = () => (dispatch) =>
   getAllFiles()

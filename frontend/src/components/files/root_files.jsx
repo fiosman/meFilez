@@ -25,8 +25,6 @@ function RootFiles(props) {
         }
       }
       return allFiles;
-    } else {
-      console.log("wot");
     }
   });
 

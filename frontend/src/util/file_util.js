@@ -11,3 +11,7 @@ export const getFolder = (fileId) => {
 export const deleteFile = (fileId) => {
   return axios.delete(`/api/files/${fileId}`);
 };
+
+export const createFile = (data) => {
+  return axios.post("/api/files/", data);
+};
