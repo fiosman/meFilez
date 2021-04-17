@@ -27,6 +27,7 @@ export const fetchFiles = () => (dispatch) =>
   getAllFiles()
     .then((files) => dispatch(receiveFiles(files)))
     .catch((err) => {
+      // console.log(err);
       throw err;
     });
 
@@ -34,6 +35,7 @@ export const fetchFolder = (folderId) => (dispatch) =>
   getFolder(folderId)
     .then((files) => dispatch(receiveFiles(files)))
     .catch((err) => {
+      // console.log(err);
       throw err;
     });
 

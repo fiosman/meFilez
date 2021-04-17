@@ -13,17 +13,21 @@ function RootFiles(props) {
   const { files } = useSelector((state) => state.entities);
 
   const filteredFiles = useSelector((state) => {
-    let allFiles = [];
-    for (const file in files) {
-      if (
-        files[file].fileName
-          .toLowerCase()
-          .includes(state.filters.search.toLowerCase())
-      ) {
-        allFiles.push(file);
+    if (files !== undefined) {
+      let allFiles = [];
+      for (const file in files) {
+        if (
+          files[file].fileName
+            .toLowerCase()
+            .includes(state.filters.search.toLowerCase())
+        ) {
+          allFiles.push(file);
+        }
       }
+      return allFiles;
+    } else {
+      console.log("wot");
     }
-    return allFiles;
   });
 
   useEffect(() => {
