@@ -61,7 +61,7 @@ function SignUpForm(props) {
             </ul>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={hideModal}>
+            <Button variant="custom" onClick={hideModal}>
               Close
             </Button>
           </Modal.Footer>
