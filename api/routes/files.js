@@ -22,7 +22,7 @@ const userAuthorization = (req, res, next) => {
             message: "You are not authorized to complete this action.",
           });
     })
-    .catch((err) => res.json(err));
+    .catch((err) => res.status(404).json({ message: "File was not found" }));
 };
 
 router.post(
