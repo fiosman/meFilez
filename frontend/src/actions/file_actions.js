@@ -45,8 +45,15 @@ export const removeFileErrors = () => ({
   type: REMOVE_FILE_ERRORS,
 });
 
-// export const newFile = () => (dispatch) =>
-// createFile().then((file))
+export const newFile = (data) => (dispatch) =>
+  createFile(data)
+    .then((file) => {
+      dispatch(receiveFile(file));
+    })
+    .catch((err) => {
+      dispatch(receiveFileErrors(err.response.data));
+      throw err;
+    });
 
 export const fetchFiles = () => (dispatch) =>
   getAllFiles()

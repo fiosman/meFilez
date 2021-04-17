@@ -1,4 +1,8 @@
-import { RECEIVE_FILES, REMOVE_FILE } from "../actions/file_actions";
+import {
+  RECEIVE_FILE,
+  RECEIVE_FILES,
+  REMOVE_FILE,
+} from "../actions/file_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/user_actions";
 
 const filesReducer = (state = {}, action) => {
@@ -7,6 +11,10 @@ const filesReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_FILES:
       return Object.assign({}, action.files);
+    case RECEIVE_FILE:
+      return Object.assign({}, state, {
+        [action.file._id]: action.file,
+      });
     case REMOVE_FILE:
       let currentState = Object.assign({}, state);
 
