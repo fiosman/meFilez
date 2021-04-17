@@ -36,24 +36,33 @@ export const removeFileErrors = () => ({
 
 export const fetchFiles = () => (dispatch) =>
   getAllFiles()
-    .then((files) => dispatch(receiveFiles(files)))
+    .then((files) => {
+      dispatch(removeFileErrors());
+      dispatch(receiveFiles(files));
+    })
     .catch((err) => {
-      receiveFileErrors(err.response.data);
+      dispatch(receiveFileErrors(err.response.data));
       throw err;
     });
 
 export const fetchFolder = (folderId) => (dispatch) =>
   getFolder(folderId)
-    .then((files) => dispatch(receiveFiles(files)))
+    .then((files) => {
+      dispatch(removeFileErrors());
+      dispatch(receiveFiles(files));
+    })
     .catch((err) => {
-      receiveFileErrors(err.response.data);
+      dispatch(receiveFileErrors(err.response.data));
       throw err;
     });
 
 export const wipeFile = (fileId) => (dispatch) =>
   deleteFile(fileId)
-    .then((file) => dispatch(removeFile(file)))
+    .then((file) => {
+      dispatch(removeFileErrors());
+      dispatch(removeFile(file));
+    })
     .catch((err) => {
-      receiveFileErrors(err.response.data);
+      dispatch(receiveFileErrors(err.response.data));
       throw err;
     });

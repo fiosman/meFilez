@@ -18,11 +18,11 @@ const userAuthorization = (req, res, next) => {
     .then((file) => {
       return file.owner.equals(currentUser)
         ? next()
-        : res.status(400).json({
-            message: "You are not authorized to complete this action.",
-          });
+        : res
+            .status(400)
+            .json(["You are not authorized to complete this action."]);
     })
-    .catch((err) => res.status(404).json({ message: "File was not found" }));
+    .catch((err) => res.status(404).json(["File was not found"]));
 };
 
 router.post(
