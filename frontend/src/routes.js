@@ -1,7 +1,7 @@
 import React from "react";
 import Splash from "./components/splash/splash";
 import RootFiles from "./components/files/root_files";
-import { Switch } from "react-router-dom";
+import { Switch, BrowserRouter } from "react-router-dom";
 import { ProtectedRoute, AuthRoute } from "./util/route_utils";
 
 export const Routes = () => {
@@ -9,8 +9,11 @@ export const Routes = () => {
     <div>
       <Switch>
         <AuthRoute exact path="/" component={Splash} />
-        <ProtectedRoute exact path="/files" component={RootFiles} />
-        <ProtectedRoute exact path="/files/:fileId" component={RootFiles} />
+        <ProtectedRoute
+          exact
+          path={["/files", "/files/:fileId"]}
+          component={RootFiles}
+        />
       </Switch>
     </div>
   );

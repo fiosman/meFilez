@@ -15,9 +15,16 @@ import FormControl from "react-bootstrap/FormControl";
 
 function CreateUpload(props) {
   const [isOpen, setIsOpen] = useState(false);
+  const [details, setDetails] = useState({
+    fileName: "",
+    isFolder: null,
+    parentId:
+      props.match.params.fileId === undefined
+        ? null
+        : props.match.params.fileId,
+  });
 
   const dispatch = useDispatch();
-  const { session } = useSelector((state) => state);
 
   function goToPreviousPage() {
     return props.history.goBack();
@@ -29,6 +36,12 @@ function CreateUpload(props) {
 
   function hideModal() {
     setIsOpen(false);
+  }
+
+  function handleChange(e) {
+    setDetails((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
   }
 
   function renderInput() {
@@ -51,6 +64,9 @@ function CreateUpload(props) {
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Enter folder name here..."
+                name="fileName"
+                value={details.fileName}
+                onChange={handleChange}
               />
             </InputGroup>
           </Modal.Body>
@@ -65,17 +81,24 @@ function CreateUpload(props) {
   }
 
   function createFolder() {
-    hideModal();
+    dispatch(newFile({ ...details, isFolder: true }))
+      .then((file) => hideModal())
+      .catch((err) => console.log(err));
+  }
+
+  function uploadFile() {
+    console.log("something");
   }
 
   return (
     <div className="folder-upload-add">
+      {renderInput()}
       {props.match.url === "/files" ? (
         <div>
           <span className="add-folder" onClick={showModal}>
             <FontAwesomeIcon icon={faFolderPlus} />
           </span>
-          <span className="upload-file">
+          <span className="upload-file" onClick={uploadFile}>
             <FontAwesomeIcon icon={faFileUpload} />
           </span>
         </div>
@@ -84,15 +107,14 @@ function CreateUpload(props) {
           <span className="previous-page">
             <FontAwesomeIcon icon={faArrowLeft} onClick={goToPreviousPage} />
           </span>
-          <span className="add-folder">
+          <span className="add-folder" onClick={showModal}>
             <FontAwesomeIcon icon={faFolderPlus} />
           </span>
-          <span className="upload-file">
+          <span className="upload-file" onClick={uploadFile}>
             <FontAwesomeIcon icon={faFileUpload} />
           </span>
         </div>
       )}
-      {renderInput()}
     </div>
   );
 }
