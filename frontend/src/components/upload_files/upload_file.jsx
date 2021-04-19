@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
@@ -8,6 +8,8 @@ import { faFileUpload } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { newFile } from "../../actions/file_actions";
 import { withRouter } from "react-router";
+import Form from "react-bootstrap/Form";
+import bsCustomFileInput from "bs-custom-file-input";
 
 function UploadFile(props) {
   const [fileModalOpen, setFileModalOpen] = useState(false);
@@ -19,6 +21,11 @@ function UploadFile(props) {
         ? null
         : props.match.params.fileId,
   });
+
+  useEffect(() => {
+    bsCustomFileInput.init();
+  });
+
   function showFileModal() {
     setFileModalOpen(true);
   }
@@ -52,18 +59,20 @@ function UploadFile(props) {
           <Modal.Body>
             <InputGroup className="mb-3">
               <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                placeholder="Enter folder name here..."
+                placeholder="File name"
                 name="fileName"
                 value={details.fileName}
                 onChange={handleChange}
+                className="file-name-input"
               />
+              <Form>
+                <Form.File id="custom-file" label="Choose file" custom />
+              </Form>
             </InputGroup>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="custom" onClick={createFile}>
-              Create Folder
+              Upload File
             </Button>
           </Modal.Footer>
         </Modal>
@@ -72,9 +81,6 @@ function UploadFile(props) {
   }
 
   function createFile() {
-    // dispatch(newFile({ ...details, isFolder: true }))
-    //   .then((file) => hideFolderModal())
-    //   .catch((err) => console.log(err));
     console.log("test");
   }
 

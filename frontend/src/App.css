@@ -136,3 +136,24 @@ ul {
 .clearfilters {
   flex: 1;
 }
+
+.file-name-input {
+  margin-right: 20px;
+}
+
+input#custom-file {
+  outline-color: purple !important;
+}
+
+.file-name-input {
+  border: 1px solid #ced4da !important;
+}
+
+.custom-file-label,
+.file-name-input {
+  border: 1px solid purple !important;
+}
+
+.folder-input {
+  width: 60%;
+}

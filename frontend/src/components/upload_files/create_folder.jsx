@@ -49,11 +49,9 @@ function CreateFolder(props) {
           <Modal.Header closeButton>
             <Modal.Title>New Folder</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="folder-input">
             <InputGroup className="mb-3">
               <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
                 placeholder="Enter folder name here..."
                 name="fileName"
                 value={details.fileName}
