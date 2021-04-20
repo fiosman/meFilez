@@ -20,6 +20,7 @@ function UploadFile(props) {
       props.match.params.fileId === undefined
         ? null
         : props.match.params.fileId,
+    file: null,
   });
 
   useEffect(() => {
@@ -37,9 +38,29 @@ function UploadFile(props) {
   }
 
   function handleChange(e) {
-    setDetails((prevState) => {
-      return { ...prevState, [e.target.name]: e.target.value };
-    });
+    if (e.target.name === "fileName") {
+      return setDetails((prevState) => {
+        return { ...prevState, fileName: e.target.value };
+      });
+    }
+
+    const file = e.target.files[0];
+    const fileReader = new FileReader();
+
+    fileReader.onloadend = () => {
+      setDetails((prevState) => {
+        return { ...prevState, file: file };
+      });
+    };
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  }
+
+  function createFile() {
+    const formData = new FormData();
+    formData.append("file", details.file);
   }
 
   function renderFileModal() {
@@ -66,7 +87,13 @@ function UploadFile(props) {
                 className="file-name-input"
               />
               <Form>
-                <Form.File id="custom-file" label="Choose file" custom />
+                <Form.File
+                  id="custom-file"
+                  label="Choose file"
+                  name="file"
+                  custom
+                  onChange={handleChange}
+                />
               </Form>
             </InputGroup>
           </Modal.Body>
@@ -78,10 +105,6 @@ function UploadFile(props) {
         </Modal>
       </>
     );
-  }
-
-  function createFile() {
-    console.log("test");
   }
 
   return (

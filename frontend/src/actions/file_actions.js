@@ -48,7 +48,6 @@ export const removeFileErrors = () => ({
 export const newFile = (data) => (dispatch) =>
   createFile(data)
     .then((file) => {
-      console.log(file);
       dispatch(receiveFile(file));
     })
     .catch((err) => {
