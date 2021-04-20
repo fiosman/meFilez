@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
@@ -13,17 +13,23 @@ function CreateFolder(props) {
   const [folderModalOpen, setFolderModalOpen] = useState(false);
   const [details, setDetails] = useState({
     fileName: "",
-    isFolder: null,
-    parentId:
-      props.match.params.fileId === undefined
-        ? null
-        : props.match.params.fileId,
+    isFolder: true,
+    parentId: "",
   });
+
+  useEffect(
+    () =>
+      setDetails((prevState) => {
+        return { ...prevState, parentId: props.match.params.fileId };
+      }),
+    [props.match.params.fileId]
+  );
+
+  const dispatch = useDispatch();
+
   function showFolderModal() {
     setFolderModalOpen(true);
   }
-
-  const dispatch = useDispatch();
 
   function hideFolderModal() {
     setFolderModalOpen(false);
@@ -70,6 +76,7 @@ function CreateFolder(props) {
   }
 
   function createFolder() {
+    console.log(details);
     dispatch(newFile({ ...details, isFolder: true }))
       .then((file) => hideFolderModal())
       .catch((err) => console.log(err));

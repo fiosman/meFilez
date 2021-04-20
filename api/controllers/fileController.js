@@ -7,8 +7,6 @@ const createFile = (req, res) => {
     file: req.file,
   };
 
-  console.log(requestObject, req.user);
-
   const { isValid, errors } = validateFileInput(requestObject);
 
   if (!isValid) return res.status(400).json(errors);

@@ -16,22 +16,27 @@ function UploadFile(props) {
   const [details, setDetails] = useState({
     fileName: "",
     isFolder: false,
-    parentId:
-      props.match.params.fileId === undefined
-        ? null
-        : props.match.params.fileId,
-    file: null,
+    parentId: "",
+    file: "",
   });
+
+  useEffect(
+    () =>
+      setDetails((prevState) => {
+        return { ...prevState, parentId: props.match.params.fileId };
+      }),
+    [props.match.params.fileId]
+  );
 
   useEffect(() => {
     bsCustomFileInput.init();
   });
 
+  const dispatch = useDispatch();
+
   function showFileModal() {
     setFileModalOpen(true);
   }
-
-  const dispatch = useDispatch();
 
   function hideFileModal() {
     setFileModalOpen(false);
@@ -60,7 +65,14 @@ function UploadFile(props) {
 
   function createFile() {
     const formData = new FormData();
+    formData.append("fileName", details.fileName);
+    formData.append("parentId", details.parentId);
+    formData.append("isFolder", details.isFolder);
     formData.append("file", details.file);
+
+    dispatch(newFile(formData))
+      .then((file) => hideFileModal())
+      .catch((err) => console.log(err));
   }
 
   function renderFileModal() {
