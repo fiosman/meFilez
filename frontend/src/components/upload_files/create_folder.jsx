@@ -76,8 +76,7 @@ function CreateFolder(props) {
   }
 
   function createFolder() {
-    console.log(details);
-    dispatch(newFile({ ...details, isFolder: true }))
+    dispatch(newFile({ ...details }))
       .then((file) => hideFolderModal())
       .catch((err) => console.log(err));
   }

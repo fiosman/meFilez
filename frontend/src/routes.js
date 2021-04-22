@@ -1,7 +1,7 @@
 import React from "react";
 import Splash from "./components/splash/splash";
 import RootFiles from "./components/files/root_files";
-import { Switch, BrowserRouter } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { ProtectedRoute, AuthRoute } from "./util/route_utils";
 
 export const Routes = () => {

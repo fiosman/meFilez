@@ -16,7 +16,7 @@ function UploadFile(props) {
   const [details, setDetails] = useState({
     fileName: "",
     isFolder: false,
-    parentId: "",
+    parentId: undefined,
     file: "",
   });
 
@@ -25,9 +25,7 @@ function UploadFile(props) {
       setDetails((prevState) => {
         return {
           ...prevState,
-          parentId: props.match.params.fileId
-            ? props.match.params.fileId
-            : null,
+          parentId: props.match.params.fileId,
         };
       }),
     [props.match.params.fileId]
@@ -70,10 +68,13 @@ function UploadFile(props) {
 
   function createFile() {
     const formData = new FormData();
-    formData.append("fileName", details.fileName);
-    formData.append("parentId", details.parentId);
-    formData.append("isFolder", details.isFolder);
     formData.append("file", details.file);
+    formData.append("fileName", details.fileName);
+    formData.append("isFolder", details.isFolder);
+
+    if (props.match.params.fileId !== undefined) {
+      formData.append("parentId", details.parentId);
+    }
 
     dispatch(newFile(formData))
       .then((file) => hideFileModal())
