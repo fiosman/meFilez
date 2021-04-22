@@ -23,7 +23,12 @@ function UploadFile(props) {
   useEffect(
     () =>
       setDetails((prevState) => {
-        return { ...prevState, parentId: props.match.params.fileId };
+        return {
+          ...prevState,
+          parentId: props.match.params.fileId
+            ? props.match.params.fileId
+            : null,
+        };
       }),
     [props.match.params.fileId]
   );

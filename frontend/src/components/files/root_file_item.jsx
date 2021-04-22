@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { wipeFile } from "../../actions/file_actions";
 
 function RootFileItem(props) {
-  const { fileName, isFolder, createdAt, _id } = props.file;
+  const { fileName, isFolder, createdAt, _id, fileKey } = props.file;
 
   const dispatch = useDispatch();
 
@@ -25,7 +25,11 @@ function RootFileItem(props) {
     props.history.push(`/files/${_id}`);
   }
 
-  function viewFile() {}
+  function viewFile() {
+    return window.open(
+      `https://mefilez-dev.s3.us-east-2.amazonaws.com/${fileKey}`
+    );
+  }
 
   return (
     <tr className="item-row">
