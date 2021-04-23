@@ -5,6 +5,7 @@ import {
   faFile,
   faTrash,
   faFileDownload,
+  faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router";
 import { useDispatch } from "react-redux";
@@ -20,6 +21,8 @@ function RootFileItem(props) {
   }
 
   function handleDownload() {}
+
+  function handleEdit() {}
 
   function viewFolder() {
     props.history.push(`/files/${_id}`);
@@ -53,14 +56,24 @@ function RootFileItem(props) {
           icon={faTrash}
           onClick={handleDelete}
         />
+        <FontAwesomeIcon
+          className="edit-icon"
+          icon={faEdit}
+          onClick={handleEdit}
+        />
         {isFolder ? (
           ""
         ) : (
-          <FontAwesomeIcon
-            className="download-icon"
-            icon={faFileDownload}
-            onClick={handleDownload}
-          />
+          <a
+            href="https://mefilez-dev.s3.us-east-2.amazonaws.com/1619068851087"
+            download
+          >
+            <FontAwesomeIcon
+              className="download-icon"
+              icon={faFileDownload}
+              onClick={handleDownload}
+            />
+          </a>
         )}
       </td>
     </tr>

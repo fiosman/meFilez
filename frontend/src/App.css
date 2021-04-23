@@ -84,9 +84,14 @@ ul {
 }
 
 .delete-icon,
-.download-icon {
+.download-icon,
+.edit-icon {
   font-size: 20px;
   color: #800080;
+}
+
+.edit-icon {
+  margin-right: 10px;
 }
 
 .add-folder,
@@ -156,4 +161,7 @@ input#custom-file {
 
 .folder-input {
   width: 60%;
+}
+
+.edit-icon {
 }
