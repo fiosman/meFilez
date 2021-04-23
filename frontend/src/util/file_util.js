@@ -15,3 +15,7 @@ export const deleteFile = (fileId) => {
 export const createFile = (data) => {
   return axios.post("/api/files/", data);
 };
+
+export const updateFile = (file, fileId) => {
+  return axios.patch(`/api/files/${fileId}`, file);
+};

@@ -3,6 +3,7 @@ import {
   getFolder,
   deleteFile,
   createFile,
+  updateFile,
 } from "../util/file_util";
 export const RECEIVE_FILES = "RECEIVE_FILES";
 export const RECEIVE_SEARCH_TERM = "RECEIVE_SEARCH_TERM";
@@ -83,6 +84,14 @@ export const wipeFile = (fileId) => (dispatch) =>
       dispatch(removeFileErrors());
       dispatch(removeFile(file));
     })
+    .catch((err) => {
+      dispatch(receiveFileErrors(err.response.data));
+      throw err;
+    });
+
+export const modifyFile = (file, fileId) => (dispatch) =>
+  updateFile(file, fileId)
+    .then((file) => dispatch(receiveFile(file)))
     .catch((err) => {
       dispatch(receiveFileErrors(err.response.data));
       throw err;
