@@ -52,7 +52,7 @@ function EditFile(props) {
           <Modal.Body className="folder-input">
             <InputGroup className="mb-3">
               <FormControl
-                placeholder="Enter new name here..."
+                placeholder="Enter new file name here..."
                 name="fileName"
                 value={fileName}
                 onChange={handleChange}
@@ -70,7 +70,7 @@ function EditFile(props) {
   }
 
   function editFileName() {
-    dispatch(modifyFile(fileName, props.match.params.fileId))
+    dispatch(modifyFile({ fileName: fileName }, props.fileId))
       .then((file) => hideEditFile())
       .catch((err) => console.log(err));
   }

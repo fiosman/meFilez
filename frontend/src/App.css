@@ -106,7 +106,8 @@ ul {
 .upload-file:hover,
 .delete-icon:hover,
 .download-icon:hover,
-.previous-page {
+.previous-page,
+.edit-icon:hover {
   cursor: pointer;
 }
 

@@ -46,8 +46,8 @@ const updateFile = (req, res) => {
   const fileId = req.params.fileId;
   const newName = req.body.fileName;
 
-  File.updateOne({ _id: fileId }, { fileName: newName })
-    .then((data) => res.json(data))
+  File.findOneAndUpdate({ _id: fileId }, { fileName: newName }, { new: true })
+    .then((file) => res.json(file))
     .catch((err) => res.json(err));
 };
 
@@ -55,7 +55,10 @@ const showAllFiles = (req, res) => {
   const currentUser = req.user._id;
 
   File.find({ owner: currentUser, parentId: null })
-    .then((files) => res.json(files))
+    .then((files) => {
+      // console.log(files);
+      res.json(files);
+    })
     .catch((err) => res.json(err));
 };
 

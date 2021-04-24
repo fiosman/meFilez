@@ -56,7 +56,7 @@ function RootFileItem(props) {
           icon={faTrash}
           onClick={handleDelete}
         />
-        <EditFile />
+        <EditFile fileId={_id} />
         {isFolder ? (
           ""
         ) : (

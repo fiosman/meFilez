@@ -11,15 +11,16 @@ export const CLEAR_FILTERS = "CLEAR_FILTERS";
 export const REMOVE_FILE = "REMOVE_FILE";
 export const RECEIVE_FILE_ERRORS = "RECEIVE_FILE_ERRORS";
 export const REMOVE_FILE_ERRORS = "REMOVE_FILE_ERRORS";
-export const RECEIVE_FILE = "RECEIVE_FILE";
+export const RECEIVE_NEW_FILE = "RECEIVE_NEW_FILE";
+export const RECEIVE_UPDATED_FILE = "RECEIVE_UPDATED_FILE";
 
 export const receiveFiles = (files) => ({
   type: RECEIVE_FILES,
   files: files.data,
 });
 
-export const receiveFile = (file) => ({
-  type: RECEIVE_FILE,
+export const receiveNewFile = (file) => ({
+  type: RECEIVE_NEW_FILE,
   file: file.data,
 });
 
@@ -45,11 +46,15 @@ export const receiveFileErrors = (errors) => ({
 export const removeFileErrors = () => ({
   type: REMOVE_FILE_ERRORS,
 });
+export const receiveUpdatedFile = (file) => ({
+  type: RECEIVE_UPDATED_FILE,
+  file: file.data,
+});
 
 export const newFile = (data) => (dispatch) =>
   createFile(data)
     .then((file) => {
-      dispatch(receiveFile(file));
+      dispatch(receiveNewFile(file));
     })
     .catch((err) => {
       dispatch(receiveFileErrors(err.response.data));
@@ -89,9 +94,9 @@ export const wipeFile = (fileId) => (dispatch) =>
       throw err;
     });
 
-export const modifyFile = (file, fileId) => (dispatch) =>
-  updateFile(file, fileId)
-    .then((file) => dispatch(receiveFile(file)))
+export const modifyFile = (fileData, fileId) => (dispatch) =>
+  updateFile(fileData, fileId)
+    .then((file) => dispatch(receiveUpdatedFile(file)))
     .catch((err) => {
       dispatch(receiveFileErrors(err.response.data));
       throw err;
