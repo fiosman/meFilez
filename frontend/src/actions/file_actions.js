@@ -83,8 +83,8 @@ export const fetchFolder = (folderId) => (dispatch) =>
       throw err;
     });
 
-export const wipeFile = (fileId) => (dispatch) =>
-  deleteFile(fileId)
+export const wipeFile = (fileId, fileKey) => (dispatch) =>
+  deleteFile(fileId, fileKey)
     .then((file) => {
       dispatch(removeFileErrors());
       dispatch(removeFile(file));

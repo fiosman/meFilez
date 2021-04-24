@@ -9,6 +9,7 @@ const {
   showAllFiles,
 } = require("../controllers/fileController");
 const upload = require("../../services/fileUpload");
+const deleteBucketFile = require("../../services/fileDelete");
 const File = require("../../models/File");
 
 const userAuthorization = (req, res, next) => {
@@ -23,6 +24,11 @@ const userAuthorization = (req, res, next) => {
             .json(["You are not authorized to complete this action."]);
     })
     .catch((err) => res.status(404).json(["File was not found"]));
+};
+
+const deleteS3 = (req, res, next) => {
+  deleteBucketFile(req.body.fileKey);
+  next();
 };
 
 router.post(
@@ -41,7 +47,11 @@ router.get(
 
 router.delete(
   "/:fileId",
-  [passport.authenticate("jwt", { session: false }), userAuthorization],
+  [
+    passport.authenticate("jwt", { session: false }),
+    userAuthorization,
+    deleteS3,
+  ],
   deleteFile
 );
 

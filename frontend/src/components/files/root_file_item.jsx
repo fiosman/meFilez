@@ -17,7 +17,7 @@ function RootFileItem(props) {
   const dispatch = useDispatch();
 
   function handleDelete() {
-    return dispatch(wipeFile(_id));
+    return dispatch(wipeFile(_id, fileKey));
   }
 
   function handleDownload() {}

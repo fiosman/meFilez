@@ -13,14 +13,6 @@ function EditFile(props) {
   const [editFileOpen, setEditFileOpen] = useState(false);
   const [fileName, setFileName] = useState("");
 
-  // useEffect(
-  //   () =>
-  //     setDetails((prevState) => {
-  //       return { ...prevState, parentId: props.match.params.fileId };
-  //     }),
-  //   [props.match.params.fileId]
-  // );
-
   const dispatch = useDispatch();
 
   function showEditFile() {

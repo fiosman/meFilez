@@ -8,8 +8,8 @@ export const getFolder = (fileId) => {
   return axios.get(`/api/files/${fileId}`);
 };
 
-export const deleteFile = (fileId) => {
-  return axios.delete(`/api/files/${fileId}`);
+export const deleteFile = (fileId, fileKey) => {
+  return axios.delete(`/api/files/${fileId}`, { data: { fileKey } });
 };
 
 export const createFile = (data) => {
