@@ -5,11 +5,11 @@ import {
   faFile,
   faTrash,
   faFileDownload,
-  faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router";
 import { useDispatch } from "react-redux";
-import { wipeFile } from "../../actions/file_actions";
+import { wipeFile, modifyFile } from "../../actions/file_actions";
+import EditFile from "./edit_file";
 
 function RootFileItem(props) {
   const { fileName, isFolder, createdAt, _id, fileKey } = props.file;
@@ -50,17 +50,13 @@ function RootFileItem(props) {
         )}
       </td>
       <td>{new Date(createdAt).toLocaleString()}</td>
-      <td>
+      <td className="action-icons">
         <FontAwesomeIcon
           className="delete-icon"
           icon={faTrash}
           onClick={handleDelete}
         />
-        <FontAwesomeIcon
-          className="edit-icon"
-          icon={faEdit}
-          onClick={handleEdit}
-        />
+        <EditFile />
         {isFolder ? (
           ""
         ) : (

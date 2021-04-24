@@ -163,5 +163,6 @@ input#custom-file {
   width: 60%;
 }
 
-.edit-icon {
+.action-icons {
+  display: flex;
 }
