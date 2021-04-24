@@ -9,20 +9,21 @@ aws.config.update({
 
 const s3 = new aws.S3();
 
-const deleteS3Item = (fileKey) => {
+const deleteS3Item = (req, res, next) => {
   s3.deleteObject(
     {
       Bucket: process.env.BUCKET_NAME,
-      Key: fileKey,
+      Key: req.body.fileKey,
     },
     function (err, data) {
       if (err) {
-        return err.message;
+        return res.status(err.statusCode).json({ messaage: err.message });
       } else {
-        return data;
+        return res.json({ message: "File deleted from S3" });
       }
     }
   );
+  next();
 };
 
 module.exports = deleteS3Item;

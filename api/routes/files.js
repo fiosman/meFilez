@@ -26,11 +26,6 @@ const userAuthorization = (req, res, next) => {
     .catch((err) => res.status(404).json(["File was not found"]));
 };
 
-const deleteS3 = (req, res, next) => {
-  deleteBucketFile(req.body.fileKey);
-  next();
-};
-
 router.post(
   "/",
   [passport.authenticate("jwt", { session: false }), upload.single("file")],
@@ -50,7 +45,7 @@ router.delete(
   [
     passport.authenticate("jwt", { session: false }),
     userAuthorization,
-    deleteS3,
+    deleteBucketFile,
   ],
   deleteFile
 );
