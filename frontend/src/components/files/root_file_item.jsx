@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router";
 import { useDispatch } from "react-redux";
-import { wipeFile, modifyFile } from "../../actions/file_actions";
+import { wipeFile } from "../../actions/file_actions";
 import EditFile from "./edit_file";
 
 function RootFileItem(props) {
@@ -21,8 +21,6 @@ function RootFileItem(props) {
   }
 
   function handleDownload() {}
-
-  function handleEdit() {}
 
   function viewFolder() {
     props.history.push(`/files/${_id}`);

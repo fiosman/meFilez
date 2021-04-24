@@ -56,7 +56,6 @@ const showAllFiles = (req, res) => {
 
   File.find({ owner: currentUser, parentId: null })
     .then((files) => {
-      // console.log(files);
       res.json(files);
     })
     .catch((err) => res.json(err));

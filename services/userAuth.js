@@ -1,7 +1,6 @@
 const File = require("../models/File");
 
 const userAuthorization = (req, res, next) => {
-  console.log("IT WORKING");
   const currentUser = req.user._id;
   const fileId = req.params.fileId;
   File.findById(fileId)

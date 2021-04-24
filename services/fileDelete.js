@@ -17,9 +17,9 @@ const deleteS3Item = (req, res, next) => {
     },
     function (err, data) {
       if (err) {
-        return res.status(err.statusCode).json({ messaage: err.message });
+        return;
       } else {
-        return res.json({ message: "File deleted from S3" });
+        return;
       }
     }
   );
