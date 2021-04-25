@@ -1,22 +1,29 @@
 const validString = require("./valid-string");
 const Validator = require("validator");
+const S3Delete = require("../services/fileDelete");
 
-module.exports = function validateFileInput(data) {
+function validateFileInput(req, res, next) {
   let errors = [];
-  data.body.fileName = validString(data.body.fileName)
-    ? data.body.fileName
-    : "";
 
-  if (Validator.isEmpty(data.body.fileName)) {
+  req.body.fileName = validString(req.body.fileName) ? req.body.fileName : "";
+
+  if (Validator.isEmpty(req.body.fileName)) {
     errors.push("File name is required");
+    if (req.method === "PATCH") return;
   }
 
-  if (data.file === undefined && !data.body.isFolder) {
+  if (req.file === undefined && req.body.isFolder == "false") {
     errors.push("File input is required");
   }
 
-  return {
-    errors,
-    isValid: Object.keys(errors).length === 0,
-  };
-};
+  if (errors.length > 0) {
+    if (req.file != undefined && req.body.fileName === "") {
+      S3Delete(req.file.key);
+    }
+    return res.status(400).json(errors);
+  }
+
+  next();
+}
+
+module.exports = validateFileInput;

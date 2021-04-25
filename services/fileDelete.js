@@ -9,11 +9,11 @@ aws.config.update({
 
 const s3 = new aws.S3();
 
-const deleteS3Item = (req, res, next) => {
+const deleteS3Item = (fileKey) => {
   s3.deleteObject(
     {
       Bucket: process.env.BUCKET_NAME,
-      Key: req.body.fileKey,
+      Key: fileKey,
     },
     function (err, data) {
       if (err) {
@@ -23,7 +23,6 @@ const deleteS3Item = (req, res, next) => {
       }
     }
   );
-  next();
 };
 
 module.exports = deleteS3Item;

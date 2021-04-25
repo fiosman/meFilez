@@ -8,13 +8,17 @@ const {
   updateFile,
   showAllFiles,
 } = require("../controllers/fileController");
-const upload = require("../../services/fileUpload");
-const deleteBucketFile = require("../../services/fileDelete");
+const S3Upload = require("../../services/fileUpload");
 const userAuthorization = require("../../services/userAuth");
+const fileValidation = require("../../validations/file");
 
 router.post(
   "/",
-  [passport.authenticate("jwt", { session: false }), upload.single("file")],
+  [
+    passport.authenticate("jwt", { session: false }),
+    S3Upload.single("file"),
+    fileValidation,
+  ],
   createFile
 );
 
@@ -28,17 +32,17 @@ router.get(
 
 router.delete(
   "/:fileId",
-  [
-    passport.authenticate("jwt", { session: false }),
-    userAuthorization,
-    deleteBucketFile,
-  ],
+  [passport.authenticate("jwt", { session: false }), userAuthorization],
   deleteFile
 );
 
 router.patch(
   "/:fileId",
-  [passport.authenticate("jwt", { session: false }), userAuthorization],
+  [
+    passport.authenticate("jwt", { session: false }),
+    userAuthorization,
+    fileValidation,
+  ],
   updateFile
 );
 

@@ -1,16 +1,7 @@
 const File = require("../../models/File");
-const validateFileInput = require("../../validations/file");
+const S3Delete = require("../../services/fileDelete");
 
 const createFile = (req, res) => {
-  const requestObject = {
-    body: req.body,
-    file: req.file,
-  };
-
-  const { isValid, errors } = validateFileInput(requestObject);
-
-  if (!isValid) return res.status(400).json(errors);
-
   const newFile = new File({
     owner: req.user,
     fileName: req.body.fileName,
@@ -38,7 +29,10 @@ const deleteFile = (req, res) => {
   File.deleteMany({
     $or: [{ ancestors: fileId }, { _id: fileId }],
   })
-    .then(() => res.json(fileId))
+    .then(() => {
+      S3Delete(req.body.fileKey);
+      res.json(fileId);
+    })
     .catch((err) => res.json(err));
 };
 
