@@ -5,8 +5,8 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileUpload } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
-import { newFile } from "../../actions/file_actions";
+import { useDispatch, useSelector } from "react-redux";
+import { newFile, removeFileErrors } from "../../actions/file_actions";
 import { withRouter } from "react-router";
 import Form from "react-bootstrap/Form";
 import bsCustomFileInput from "bs-custom-file-input";
@@ -35,6 +35,8 @@ function UploadFile(props) {
     bsCustomFileInput.init();
   });
 
+  const { errors } = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
   function showFileModal() {
@@ -43,6 +45,7 @@ function UploadFile(props) {
 
   function hideFileModal() {
     setFileModalOpen(false);
+    if (errors.file.length > 0) return dispatch(removeFileErrors());
   }
 
   function handleChange(e) {
@@ -77,7 +80,12 @@ function UploadFile(props) {
     }
 
     dispatch(newFile(formData))
-      .then((file) => hideFileModal())
+      .then((file) => {
+        hideFileModal();
+        setDetails((prevState) => {
+          return { ...prevState, file: "", fileName: "" };
+        });
+      })
       .catch((err) => console.log(err));
   }
 
@@ -114,6 +122,7 @@ function UploadFile(props) {
                 />
               </Form>
             </InputGroup>
+            {errors.file.length > 0 ? displayErrors() : ""}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="custom" onClick={createFile}>
@@ -122,6 +131,16 @@ function UploadFile(props) {
           </Modal.Footer>
         </Modal>
       </>
+    );
+  }
+
+  function displayErrors() {
+    return (
+      <ul>
+        {errors.file.map((err) => {
+          return <li>{err}</li>;
+        })}
+      </ul>
     );
   }
 

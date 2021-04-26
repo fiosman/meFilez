@@ -5,8 +5,8 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolderPlus } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
-import { newFile } from "../../actions/file_actions";
+import { useDispatch, useSelector } from "react-redux";
+import { newFile, removeFileErrors } from "../../actions/file_actions";
 import { withRouter } from "react-router";
 
 function CreateFolder(props) {
@@ -17,6 +17,9 @@ function CreateFolder(props) {
     parentId: "",
   });
 
+  const { errors } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   useEffect(
     () =>
       setDetails((prevState) => {
@@ -25,14 +28,13 @@ function CreateFolder(props) {
     [props.match.params.fileId]
   );
 
-  const dispatch = useDispatch();
-
   function showFolderModal() {
     setFolderModalOpen(true);
   }
 
   function hideFolderModal() {
     setFolderModalOpen(false);
+    if (errors.file.length > 0) return dispatch(removeFileErrors());
   }
 
   function handleChange(e) {
@@ -64,6 +66,7 @@ function CreateFolder(props) {
                 onChange={handleChange}
               />
             </InputGroup>
+            {errors.file.length > 0 ? displayErrors() : ""}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="custom" onClick={createFolder}>
@@ -75,9 +78,24 @@ function CreateFolder(props) {
     );
   }
 
+  function displayErrors() {
+    return (
+      <ul>
+        {errors.file.map((err) => {
+          return <li>{err}</li>;
+        })}
+      </ul>
+    );
+  }
+
   function createFolder() {
     dispatch(newFile({ ...details }))
-      .then((file) => hideFolderModal())
+      .then((file) => {
+        hideFolderModal();
+        setDetails((prevState) => {
+          return { ...prevState, fileName: "" };
+        });
+      })
       .catch((err) => console.log(err));
   }
 

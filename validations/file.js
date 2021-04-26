@@ -9,7 +9,6 @@ function validateFileInput(req, res, next) {
 
   if (Validator.isEmpty(req.body.fileName)) {
     errors.push("File name is required");
-    if (req.method === "PATCH") return;
   }
 
   if (req.file === undefined && req.body.isFolder == "false") {
