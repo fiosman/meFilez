@@ -24,13 +24,14 @@ const showFile = (req, res) => {
     .catch((err) => res.json(err));
 };
 
-const deleteFile = (req, res) => {
+const deleteFile = async (req, res) => {
   const fileId = req.params.fileId;
-  File.deleteMany({
-    $or: [{ ancestors: fileId }, { _id: fileId }],
-  })
-    .then(() => {
-      S3Delete(req.body.fileKey);
+  await File.find({ $or: [{ ancestors: fileId }, { _id: fileId }] })
+    .then((files) => {
+      files.forEach((file) => {
+        S3Delete(file.fileKey);
+        file.remove();
+      });
       res.json(fileId);
     })
     .catch((err) => res.json(err));
