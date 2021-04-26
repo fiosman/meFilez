@@ -68,8 +68,8 @@ function EditFile(props) {
   function displayErrors() {
     return (
       <ul>
-        {errors.file.map((err) => {
-          return <li>{err}</li>;
+        {errors.file.map((err, idx) => {
+          return <li key={idx}>{err}</li>;
         })}
       </ul>
     );
