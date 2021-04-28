@@ -48,7 +48,7 @@ router.patch(
 );
 
 router.get(
-  "/download",
+  "/:fileId/download",
   [passport.authenticate("jwt", { session: false }), userAuthorization],
   downloadFile
 );
