@@ -20,7 +20,9 @@ function RootFileItem(props) {
     return dispatch(wipeFile(_id, fileKey));
   }
 
-  function handleDownload() {}
+  function handleDownload() {
+    console.log("t");
+  }
 
   function viewFolder() {
     props.history.push(`/files/${_id}`);
@@ -58,16 +60,11 @@ function RootFileItem(props) {
         {isFolder ? (
           ""
         ) : (
-          <a
-            href="https://mefilez-dev.s3.us-east-2.amazonaws.com/1619068851087"
-            download
-          >
-            <FontAwesomeIcon
-              className="download-icon"
-              icon={faFileDownload}
-              onClick={handleDownload}
-            />
-          </a>
+          <FontAwesomeIcon
+            className="download-icon"
+            icon={faFileDownload}
+            onClick={handleDownload}
+          />
         )}
       </td>
     </tr>

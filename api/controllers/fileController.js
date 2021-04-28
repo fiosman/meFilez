@@ -1,5 +1,6 @@
 const File = require("../../models/File");
 const S3Delete = require("../../services/fileDelete");
+const S3Download = require("../../services/fileDownload");
 
 const createFile = (req, res) => {
   const newFile = new File({
@@ -56,10 +57,13 @@ const showAllFiles = (req, res) => {
     .catch((err) => res.json(err));
 };
 
+const downloadFile = (req, res) => {};
+
 module.exports = {
   createFile,
   showFile,
   deleteFile,
   updateFile,
   showAllFiles,
+  downloadFile,
 };
