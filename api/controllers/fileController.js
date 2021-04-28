@@ -57,7 +57,11 @@ const showAllFiles = (req, res) => {
     .catch((err) => res.json(err));
 };
 
-const downloadFile = (req, res) => {};
+const downloadFile = (req, res) => {
+  const fileKey = req.body.fileKey;
+
+  return S3Download(fileKey);
+};
 
 module.exports = {
   createFile,
