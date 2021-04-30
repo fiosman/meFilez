@@ -20,6 +20,15 @@ export const updateFile = (fileData, fileId) => {
   return axios.patch(`/api/files/${fileId}`, fileData);
 };
 
-export const downloadFile = (fileKey, fileId) => {
-  return axios.get(`/api/files/${fileId}/download`, { data: { fileKey } });
+export const downloadFile = (fileId, fileKey) => {
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    },
+    params: {
+      fileKey,
+    },
+  };
+  return axios.get(`/api/files/${fileId}/download`, config);
 };

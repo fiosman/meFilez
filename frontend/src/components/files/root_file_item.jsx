@@ -10,6 +10,7 @@ import { withRouter } from "react-router";
 import { useDispatch } from "react-redux";
 import { wipeFile } from "../../actions/file_actions";
 import EditFile from "./edit_file";
+import { downloadFile } from "../../util/file_util";
 
 function RootFileItem(props) {
   const { fileName, isFolder, createdAt, _id, fileKey } = props.file;
@@ -21,7 +22,9 @@ function RootFileItem(props) {
   }
 
   function handleDownload() {
-    console.log("t");
+    return downloadFile(_id, fileKey)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   }
 
   function viewFolder() {
