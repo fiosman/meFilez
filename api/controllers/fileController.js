@@ -59,7 +59,6 @@ const showAllFiles = (req, res) => {
 
 const downloadFile = (req, res) => {
   const downloadUrl = S3Download.getS3DownloadUrl(req.query.fileKey);
-
   return res.redirect(downloadUrl);
 };
 
