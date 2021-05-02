@@ -63,11 +63,7 @@ const showAllFiles = (req, res) => {
 const downloadFile = (req, res) => {
   const fileStream = createFileStream(req.query.fileKey);
 
-  fileStream.pipe(
-    res
-      .set("Content-Disposition", "inline")
-      .set("Content-Type", "application/octet-stream")
-  );
+  fileStream.pipe(res.set("Content-Type", "application/image"));
 };
 
 module.exports = {

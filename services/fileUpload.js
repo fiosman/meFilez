@@ -19,8 +19,14 @@ const upload = multer({
     key: function (req, file, cb) {
       cb(null, `${Date.now().toString()}${file.originalname}`);
     },
+    contentDisposition: function (req, file, cb) {
+      if (!file.mimetype.includes("image")) {
+        cb(null, "attachment");
+      } else {
+        cb(null, "inline");
+      }
+    },
     acl: "public-read",
-    contentDisposition: "attachment",
   }),
 });
 
