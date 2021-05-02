@@ -60,17 +60,10 @@ const showAllFiles = (req, res) => {
     .catch((err) => res.json(err));
 };
 
-const downloadFile = (req, res) => {
-  const fileStream = createFileStream(req.query.fileKey);
-
-  fileStream.pipe(res.set("Content-Type", "application/image"));
-};
-
 module.exports = {
   createFile,
   showFile,
   deleteFile,
   updateFile,
   showAllFiles,
-  downloadFile,
 };

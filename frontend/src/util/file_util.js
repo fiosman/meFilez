@@ -19,12 +19,3 @@ export const createFile = (data) => {
 export const updateFile = (fileData, fileId) => {
   return axios.patch(`/api/files/${fileId}`, fileData);
 };
-
-export const downloadFile = (fileId, fileKey) => {
-  const config = {
-    params: {
-      fileKey,
-    },
-  };
-  return axios.get(`/api/files/${fileId}/download`, config);
-};

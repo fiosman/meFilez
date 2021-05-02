@@ -7,7 +7,6 @@ const {
   deleteFile,
   updateFile,
   showAllFiles,
-  downloadFile,
 } = require("../controllers/fileController");
 const S3Upload = require("../../services/fileUpload");
 const userAuthorization = require("../../services/userAuth");
@@ -49,12 +48,6 @@ router.patch(
     validateFileInput,
   ],
   updateFile
-);
-
-router.get(
-  "/:fileId/download",
-  [passport.authenticate("jwt", { session: false }), userAuthorization],
-  downloadFile
 );
 
 module.exports = router;

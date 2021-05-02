@@ -13,6 +13,7 @@ function validateFileLimit(req, res, next) {
     next();
   });
 }
+
 function validateFileInput(req, res, next) {
   let errors = [];
 
@@ -24,6 +25,11 @@ function validateFileInput(req, res, next) {
 
   if (req.file === undefined && req.body.isFolder == "false") {
     errors.push("File input is required");
+  }
+
+  if (req.file && req.file.size > 3000000) {
+    errors.push("File size is too big");
+    S3Delete(req.file.key);
   }
 
   if (errors.length > 0) {
