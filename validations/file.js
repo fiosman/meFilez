@@ -6,7 +6,7 @@ const File = require("../models/File");
 function validateFileLimit(req, res, next) {
   let errors = [];
   File.find({ owner: req.user._id }).then((files) => {
-    if (files.length === 5) {
+    if (files.length === 3) {
       errors.push("Maximum number of files reached");
       return res.status(400).json(errors);
     }

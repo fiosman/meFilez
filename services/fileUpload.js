@@ -11,6 +11,11 @@ aws.config.update({
 
 const s3 = new aws.S3();
 
+const limits = {
+  files: 1,
+  fileSize: 3000000,
+};
+
 const upload = multer({
   storage: multerS3({
     s3: s3,
@@ -28,6 +33,7 @@ const upload = multer({
     },
     acl: "public-read",
   }),
+  limits: limits,
 });
 
 module.exports = upload;
