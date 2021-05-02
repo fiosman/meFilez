@@ -17,9 +17,10 @@ const upload = multer({
     bucket: process.env.BUCKET_NAME,
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function (req, file, cb) {
-      cb(null, Date.now().toString());
+      cb(null, `${Date.now().toString()}${file.originalname}`);
     },
     acl: "public-read",
+    contentDisposition: "attachment",
   }),
 });
 

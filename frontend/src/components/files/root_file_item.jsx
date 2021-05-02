@@ -22,9 +22,9 @@ function RootFileItem(props) {
   }
 
   function handleDownload() {
-    return downloadFile(_id, fileKey)
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    // return window.open(
+    //   `https://mefilez-dev.s3.us-east-2.amazonaws.com/${fileKey}`
+    // );
   }
 
   function viewFolder() {
@@ -32,9 +32,11 @@ function RootFileItem(props) {
   }
 
   function viewFile() {
-    return window.open(
-      `https://mefilez-dev.s3.us-east-2.amazonaws.com/${fileKey}`
-    );
+    console.log(fileKey);
+    console.log("test");
+    return downloadFile(_id, fileKey)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -63,11 +65,16 @@ function RootFileItem(props) {
         {isFolder ? (
           ""
         ) : (
-          <FontAwesomeIcon
-            className="download-icon"
-            icon={faFileDownload}
-            onClick={handleDownload}
-          />
+          <a
+            href={`https://mefilez-dev.s3.us-east-2.amazonaws.com/${fileKey}`}
+            download
+          >
+            <FontAwesomeIcon
+              className="download-icon"
+              icon={faFileDownload}
+              onClick={handleDownload}
+            />
+          </a>
         )}
       </td>
     </tr>

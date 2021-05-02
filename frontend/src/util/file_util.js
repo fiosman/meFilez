@@ -22,10 +22,6 @@ export const updateFile = (fileData, fileId) => {
 
 export const downloadFile = (fileId, fileKey) => {
   const config = {
-    // headers: {
-    //   "Access-Control-Allow-Origin": "*",
-    //   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-    // },
     params: {
       fileKey,
     },

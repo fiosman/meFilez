@@ -1,6 +1,9 @@
 const File = require("../../models/File");
 const S3Delete = require("../../services/fileDelete");
-const S3Download = require("../../services/fileDownload");
+const {
+  createFileStream,
+  getDownloadUrl,
+} = require("../../services/fileDownload");
 
 const createFile = (req, res) => {
   const newFile = new File({
@@ -58,8 +61,13 @@ const showAllFiles = (req, res) => {
 };
 
 const downloadFile = (req, res) => {
-  const downloadUrl = S3Download.getS3DownloadUrl(req.query.fileKey);
-  return res.redirect(downloadUrl);
+  const fileStream = createFileStream(req.query.fileKey);
+
+  fileStream.pipe(
+    res
+      .set("Content-Disposition", "inline")
+      .set("Content-Type", "application/octet-stream")
+  );
 };
 
 module.exports = {
