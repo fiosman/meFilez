@@ -11,14 +11,18 @@ const {
 } = require("../controllers/fileController");
 const S3Upload = require("../../services/fileUpload");
 const userAuthorization = require("../../services/userAuth");
-const fileValidation = require("../../validations/file");
+const {
+  validateFileInput,
+  validateFileLimit,
+} = require("../../validations/file");
 
 router.post(
   "/",
   [
     passport.authenticate("jwt", { session: false }),
+    validateFileLimit,
     S3Upload.single("file"),
-    fileValidation,
+    validateFileInput,
   ],
   createFile
 );
@@ -42,7 +46,7 @@ router.patch(
   [
     passport.authenticate("jwt", { session: false }),
     userAuthorization,
-    fileValidation,
+    validateFileInput,
   ],
   updateFile
 );

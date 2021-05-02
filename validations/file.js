@@ -1,7 +1,18 @@
 const validString = require("./valid-string");
 const Validator = require("validator");
 const S3Delete = require("../services/fileDelete");
+const File = require("../models/File");
 
+function validateFileLimit(req, res, next) {
+  let errors = [];
+  File.find({ owner: req.user._id }).then((files) => {
+    if (files.length === 5) {
+      errors.push("Maximum number of files reached");
+      return res.status(400).json(errors);
+    }
+    next();
+  });
+}
 function validateFileInput(req, res, next) {
   let errors = [];
 
@@ -25,4 +36,7 @@ function validateFileInput(req, res, next) {
   next();
 }
 
-module.exports = validateFileInput;
+module.exports = {
+  validateFileInput,
+  validateFileLimit,
+};
