@@ -63,7 +63,7 @@ export const startLoadingAllFiles = () => ({
 
 export const newFile = (data) => (dispatch) => {
   dispatch(startLoadingSingleFile());
-  createFile(data)
+  return createFile(data)
     .then((file) => {
       dispatch(receiveNewFile(file));
     })
@@ -75,7 +75,7 @@ export const newFile = (data) => (dispatch) => {
 
 export const fetchFiles = () => (dispatch) => {
   dispatch(startLoadingAllFiles());
-  getAllFiles()
+  return getAllFiles()
     .then((files) => {
       dispatch(removeFileErrors());
       dispatch(receiveFiles(files));
@@ -87,7 +87,7 @@ export const fetchFiles = () => (dispatch) => {
 };
 
 export const fetchFolder = (folderId) => (dispatch) => {
-  dispatch(startLoadingSingleFile());
+  dispatch(startLoadingAllFiles());
   getFolder(folderId)
     .then((files) => {
       dispatch(removeFileErrors());

@@ -1,9 +1,5 @@
 const File = require("../../models/File");
 const S3Delete = require("../../services/fileDelete");
-const {
-  createFileStream,
-  getDownloadUrl,
-} = require("../../services/fileDownload");
 
 const createFile = (req, res) => {
   const newFile = new File({

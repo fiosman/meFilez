@@ -10,6 +10,7 @@ import { newFile, removeFileErrors } from "../../actions/file_actions";
 import { withRouter } from "react-router";
 import Form from "react-bootstrap/Form";
 import bsCustomFileInput from "bs-custom-file-input";
+import LoadingSpinner from "../loading_spinner/loading_spinner";
 
 function UploadFile(props) {
   const [fileModalOpen, setFileModalOpen] = useState(false);
@@ -36,6 +37,7 @@ function UploadFile(props) {
   });
 
   const { errors } = useSelector((state) => state);
+  const loadingSingleFile = useSelector((state) => state.loading.detail.file);
 
   const dispatch = useDispatch();
 
@@ -144,7 +146,9 @@ function UploadFile(props) {
     );
   }
 
-  return (
+  return loadingSingleFile ? (
+    <LoadingSpinner />
+  ) : (
     <div>
       {renderFileModal()}
       <span className="add-folder" onClick={showFileModal}>

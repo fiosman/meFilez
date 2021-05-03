@@ -8,6 +8,7 @@ import { faFolderPlus } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { newFile, removeFileErrors } from "../../actions/file_actions";
 import { withRouter } from "react-router";
+import LoadingSpinner from "../loading_spinner/loading_spinner";
 
 function CreateFolder(props) {
   const [folderModalOpen, setFolderModalOpen] = useState(false);
@@ -18,6 +19,8 @@ function CreateFolder(props) {
   });
 
   const { errors } = useSelector((state) => state);
+  const loadingSingleFile = useSelector((state) => state.loading.detail.file);
+
   const dispatch = useDispatch();
 
   useEffect(
@@ -99,7 +102,9 @@ function CreateFolder(props) {
       .catch((err) => console.log(err));
   }
 
-  return (
+  return loadingSingleFile ? (
+    <LoadingSpinner />
+  ) : (
     <div>
       {renderFolderModal()}
       <span className="add-folder" onClick={showFolderModal}>

@@ -3,6 +3,7 @@ import {
   START_LOADING_SINGLE_FILE,
   RECEIVE_FILES,
   RECEIVE_NEW_FILE,
+  RECEIVE_FILE_ERRORS,
 } from "../actions/file_actions";
 
 const initialState = {
@@ -27,6 +28,10 @@ const loadingReducer = (state = initialState, action) => {
     case START_LOADING_SINGLE_FILE:
       return Object.assign({}, state, {
         detail: { file: true },
+      });
+    case RECEIVE_FILE_ERRORS:
+      return Object.assign({}, state, {
+        detail: { file: false },
       });
     default:
       return state;

@@ -6,11 +6,13 @@ import Table from "react-bootstrap/Table";
 import CreateUpload from "../upload_files/create_upload";
 import Search from "../search_files/search";
 import NothingToShow from "./nothing_to_show";
+import LoadingSpinner from "../loading_spinner/loading_spinner";
 
 function RootFiles(props) {
   const dispatch = useDispatch();
 
   const { files } = useSelector((state) => state.entities);
+  const loadingFiles = useSelector((state) => state.loading.index.files);
 
   const filteredFiles = useSelector((state) => {
     if (files !== undefined) {
@@ -42,7 +44,9 @@ function RootFiles(props) {
     }
   }
 
-  return (
+  return loadingFiles ? (
+    <LoadingSpinner />
+  ) : (
     <div>
       <Search />
       <CreateUpload />
