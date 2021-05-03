@@ -13,6 +13,8 @@ export const RECEIVE_FILE_ERRORS = "RECEIVE_FILE_ERRORS";
 export const REMOVE_FILE_ERRORS = "REMOVE_FILE_ERRORS";
 export const RECEIVE_NEW_FILE = "RECEIVE_NEW_FILE";
 export const RECEIVE_UPDATED_FILE = "RECEIVE_UPDATED_FILE";
+export const START_LOADING_ALL_FILES = "START_LOADING_ALL_FILES";
+export const START_LOADING_SINGLE_FILE = "START_LOADING_SINGLE_FILE";
 
 export const receiveFiles = (files) => ({
   type: RECEIVE_FILES,
@@ -51,7 +53,16 @@ export const receiveUpdatedFile = (file) => ({
   file: file.data,
 });
 
-export const newFile = (data) => (dispatch) =>
+export const startLoadingSingleFile = () => ({
+  type: START_LOADING_SINGLE_FILE,
+});
+
+export const startLoadingAllFiles = () => ({
+  type: START_LOADING_ALL_FILES,
+});
+
+export const newFile = (data) => (dispatch) => {
+  dispatch(startLoadingSingleFile());
   createFile(data)
     .then((file) => {
       dispatch(receiveNewFile(file));
@@ -60,8 +71,10 @@ export const newFile = (data) => (dispatch) =>
       dispatch(receiveFileErrors(err.response.data));
       throw err;
     });
+};
 
-export const fetchFiles = () => (dispatch) =>
+export const fetchFiles = () => (dispatch) => {
+  dispatch(startLoadingAllFiles());
   getAllFiles()
     .then((files) => {
       dispatch(removeFileErrors());
@@ -71,8 +84,10 @@ export const fetchFiles = () => (dispatch) =>
       dispatch(receiveFileErrors(err.response.data));
       throw err;
     });
+};
 
-export const fetchFolder = (folderId) => (dispatch) =>
+export const fetchFolder = (folderId) => (dispatch) => {
+  dispatch(startLoadingSingleFile());
   getFolder(folderId)
     .then((files) => {
       dispatch(removeFileErrors());
@@ -82,6 +97,7 @@ export const fetchFolder = (folderId) => (dispatch) =>
       dispatch(receiveFileErrors(err.response.data));
       throw err;
     });
+};
 
 export const wipeFile = (fileId, fileKey) => (dispatch) =>
   deleteFile(fileId, fileKey)
