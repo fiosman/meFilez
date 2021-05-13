@@ -11,13 +11,13 @@ require("./config/passport")(passport);
 require("dotenv").config();
 
 mongoose
-  .connect(db, {
+  .connect(process.env.MONGODB_URI || db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then(() => app.listen(process.env.port || 5000))
+  .then(() => app.listen(process.env.PORT || 5000))
   .catch((err) => console.log(err));
 
 app.use(
@@ -49,6 +49,9 @@ app.use((req, res, next) => {
 
 app.use(passport.initialize());
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("frontend/build"));
+}
+
 app.use("/api/users", users);
 app.use("/api/files", files);
- 
