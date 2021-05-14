@@ -116,7 +116,4 @@ dist
 .pnp.*
 
 # config files 
-/config/keys.js
-config/keys.js
-config/keys_dev.js 
-config/keys_prod.js
+/config/keys_dev.js

@@ -19,7 +19,10 @@ const limits = {
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: process.env.BUCKET_NAME,
+    bucket:
+      process.env.NODE_ENV === "production"
+        ? process.env.BUCKET_NAME
+        : process.env.BUCKET_NAME_DEV,
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function (req, file, cb) {
       cb(null, `${Date.now().toString()}${file.originalname}`);
