@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const users = require("./api/routes/users");
 const files = require("./api/routes/files");
 const passport = require("passport");
+const path = require("path");
 require("./config/passport")(passport);
 require("dotenv").config();
 
@@ -26,15 +27,6 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
-
 app.use(cookieParser());
 
 app.use(bodyParser.json());
@@ -51,6 +43,9 @@ app.use(passport.initialize());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
 }
 
 app.use("/api/users", users);
