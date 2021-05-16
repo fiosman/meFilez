@@ -26,7 +26,7 @@ router.post(
   createFile
 );
 
-router.get("/", passport.authenticate("jwt", { session: false }), showAllFiles);
+router.get(["/", "/files"], passport.authenticate("jwt", { session: false }), showAllFiles);
 
 router.get(
   "/:fileId",
