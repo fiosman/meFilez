@@ -21,7 +21,7 @@ function RootFileItem(props) {
 
   function viewFile() {
     return window.open(
-      `https://mefilez-dev.s3.us-east-2.amazonaws.com/${fileKey}`
+      `https://mefilez-pro.s3.us-east-2.amazonaws.com/${fileKey}`
     );
   }
 
