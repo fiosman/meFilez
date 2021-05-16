@@ -50,3 +50,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use("/api/users", users);
 app.use("/api/files", files);
+
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
