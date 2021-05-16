@@ -27,7 +27,7 @@ router.post(
 );
 
 router.get(
-  ["/", "/files"],
+  ["/"],
   passport.authenticate("jwt", { session: false }),
   showAllFiles
 );
