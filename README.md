@@ -2,7 +2,7 @@
 
 File storage service with CRUD functionality.
 
-Development by Fares Osman and Jeannie Wang. I wanted to play around with MERN stack technology and found this application to be a suitable learning experience. This project is not meant to clone any applications and is primiarly for educational purposes to demonstrated knowledge in the MERN stack technology.
+Development by Fares Osman and Jeannie Wang utilizing an agile workflow. I wanted to play around with MERN stack technology and found this application to be a suitable learning experience. This project is not meant to clone any applications and is primiarly for educational purposes to demonstrated knowledge in the MERN stack technology.
 
 ## Live Link
 
